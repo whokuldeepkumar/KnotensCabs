@@ -1,0 +1,127 @@
+<section 
+  class="hero-slider-section" 
+  (mouseenter)="onMouseEnter()" 
+  (mouseleave)="onMouseLeave()"
+  (touchstart)="onTouchStart($event)"
+  (touchend)="onTouchEnd($event)"
+  aria-label="Knotens Cabs Hero Carousel">
+
+  <!-- Top Animated Progress Bar Indicator -->
+  <div class="autoplay-progress-bar">
+    <div class="progress-fill" [class.paused]="isHovered()"></div>
+  </div>
+
+  <div class="slides-wrapper">
+    @for (slide of slides; track slide.id; let idx = $index) {
+      <div 
+        class="slide-item" 
+        [class.active]="currentSlideIndex() === idx"
+        [style.background]="slide.bgGradient ? slide.bgGradient : '#070F1E'">
+
+        <!-- Ambient Glow Backdrop Light Beam -->
+        <div class="ambient-glow-spotlight"></div>
+
+        <!-- Dark Background Image with Smooth Scale Zoom Mask -->
+        @if (slide.bgImage) {
+          <img 
+            [src]="slide.bgImage" 
+            [alt]="slide.title" 
+            class="slide-bg-img" 
+            loading="lazy" />
+          <div class="slide-overlay"></div>
+        }
+
+        <div class="container slide-content-container">
+          <div class="slide-grid" [class.has-fleet-showcase]="slide.showVehicleFleetGrid">
+            <!-- Left Text Content Box with Staggered Entrance Animations -->
+            <div class="slide-text-box">
+              @if (slide.themeBadge) {
+                <span class="slide-badge stagger-1">
+                  <span class="material-symbols-outlined icon">{{ slide.badgeIcon || 'local_taxi' }}</span>
+                  {{ slide.themeBadge }}
+                </span>
+              }
+
+              <h1 class="slide-title stagger-2">{{ slide.title }}</h1>
+              <p class="slide-subtitle stagger-3">{{ slide.subtitle }}</p>
+
+              <!-- Eye-Catching Feature Highlight Pills -->
+              @if (slide.featureHighlights) {
+                <div class="slide-highlights stagger-4">
+                  @for (feat of slide.featureHighlights; track feat) {
+                    <span class="highlight-pill">
+                      <span class="material-symbols-outlined check">check_circle</span>
+                      {{ feat }}
+                    </span>
+                  }
+                </div>
+              }
+
+              <div class="slide-cta-buttons stagger-5">
+                <a [routerLink]="slide.primaryCta.route" class="btn btn-accent btn-lg slide-cta-btn">
+                  <span>{{ slide.primaryCta.label }}</span>
+                  <span class="material-symbols-outlined icon">arrow_forward</span>
+                </a>
+
+                @if (slide.secondaryCta) {
+                  <a [routerLink]="slide.secondaryCta.route" class="btn btn-dark-glass btn-lg slide-cta-btn">
+                    <span>{{ slide.secondaryCta.label }}</span>
+                    <span class="material-symbols-outlined icon">explore</span>
+                  </a>
+                }
+              </div>
+            </div>
+
+            <!-- Slide 1: 4 Vehicles Frosted Dark Cards Showcase Grid -->
+            @if (slide.showVehicleFleetGrid && slide.fleetVehicles) {
+              <div class="fleet-showcase-grid stagger-5">
+                @for (car of slide.fleetVehicles; track car.name) {
+                  <a routerLink="/fleet" class="fleet-showcase-card">
+                    <div class="img-wrapper">
+                      <img [src]="car.image" [alt]="car.name" class="car-img" loading="lazy" />
+                      <span class="car-tag">{{ car.tag }}</span>
+                    </div>
+                    <div class="car-info">
+                      <strong class="car-name">{{ car.name }}</strong>
+                      <span class="view-link">Book Now →</span>
+                    </div>
+                  </a>
+                }
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+
+  <!-- Sleek Floating Arrow Controls -->
+  <button 
+    type="button" 
+    class="slider-arrow prev-arrow" 
+    (click)="prevSlide()" 
+    aria-label="Previous Slide">
+    <span class="material-symbols-outlined">chevron_left</span>
+  </button>
+
+  <button 
+    type="button" 
+    class="slider-arrow next-arrow" 
+    (click)="nextSlide()" 
+    aria-label="Next Slide">
+    <span class="material-symbols-outlined">chevron_right</span>
+  </button>
+
+  <!-- Glowing Bottom Indicator Dots -->
+  <div class="slider-dots">
+    @for (slide of slides; track slide.id; let idx = $index) {
+      <button 
+        type="button" 
+        class="dot-btn" 
+        [class.active]="currentSlideIndex() === idx" 
+        (click)="goToSlide(idx)" 
+        [attr.aria-label]="'Go to slide ' + (idx + 1)">
+      </button>
+    }
+  </div>
+</section>

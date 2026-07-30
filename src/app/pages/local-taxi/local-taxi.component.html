@@ -1,0 +1,340 @@
+<!-- 1. Hero Banner Section (Clean, Spacious, Centered Text Header) -->
+<section class="local-hero-section">
+  <div class="hero-bg-overlay"></div>
+  <div class="container hero-container-centered text-center">
+    <div class="tag-badge-glow">
+      <span class="material-symbols-outlined icon">tour</span>
+      Pink City Jaipur Local Rentals
+    </div>
+    <h1 class="hero-title">Jaipur Local Taxi & Full Day Sightseeing</h1>
+    <p class="hero-subtitle">
+      Explore Amber Fort, Hawa Mahal, City Palace, Jal Mahal & Nahargarh with Jaipur's top-rated local drivers. Packages starting at <strong>₹2,000 for Full Day (8 Hrs / 80 Km)</strong>.
+    </p>
+
+    <div class="hero-highlights-row">
+      <div class="h-item">
+        <span class="material-symbols-outlined icon">check_circle</span>
+        <span>Unlimited City Stops</span>
+      </div>
+      <div class="h-item">
+        <span class="material-symbols-outlined icon">badge</span>
+        <span>Courteous Local Jaipur Drivers</span>
+      </div>
+      <div class="h-item">
+        <span class="material-symbols-outlined icon">payments</span>
+        <span>Fixed Transparent Tariffs</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. Dedicated Full-Width Quick Local Booking Form Section (Centered, Highly Visible, Prominent) -->
+<section id="local-booking-form" class="book-cab-now-section section-padding">
+  <div class="container">
+    <div class="section-header text-center">
+      <span class="section-tag">Instant Reservation</span>
+      <h2 class="section-title">Book Your Jaipur Local Taxi</h2>
+      <p class="section-subtitle">Select your rental package and reserve your cab in less than 60 seconds.</p>
+    </div>
+
+    <div class="booking-card-wrapper">
+      <div class="booking-card card">
+        <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()" class="form-body-grid">
+          
+          <div class="form-row-full">
+            <div class="form-group">
+              <label>Select Local Rental Package</label>
+              <div class="input-wrapper">
+                <span class="material-symbols-outlined icon">schedule</span>
+                <select formControlName="packageType">
+                  <option value="4hrs-40km">Half Day (4 Hours / 40 Km) - ₹1,200 (Dzire Sedan)</option>
+                  <option value="8hrs-80km">Full Day Sightseeing (8 Hours / 80 Km) - ₹2,000 (Dzire Sedan) ★ Most Popular</option>
+                  <option value="12hrs-120km">Extended Fort Sunset Tour (12 Hours / 120 Km) - ₹2,800 (Dzire Sedan)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-group">
+              <label>Pickup Location in Jaipur</label>
+              <div class="input-wrapper">
+                <span class="material-symbols-outlined icon">location_on</span>
+                <input type="text" formControlName="pickupAddress" placeholder="e.g. Hotel Name, Railway Station, Residence">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Choose Vehicle</label>
+              <div class="input-wrapper">
+                <span class="material-symbols-outlined icon">directions_car</span>
+                <select formControlName="vehicleId">
+                  @for (v of vehicles(); track v.id) {
+                    <option [value]="v.id">{{ v.name }} ({{ v.passengerCapacity }} Seats • ₹{{ v.hourlyRentalRate8Hours }} / 8Hrs)</option>
+                  }
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-group">
+              <label>Pickup Date</label>
+              <div class="input-wrapper">
+                <span class="material-symbols-outlined icon">calendar_month</span>
+                <input type="date" formControlName="journeyDate">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Pickup Time</label>
+              <div class="input-wrapper">
+                <span class="material-symbols-outlined icon">schedule</span>
+                <input type="time" formControlName="journeyTime">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-group">
+              <label>Full Name</label>
+              <div class="input-wrapper">
+                <span class="material-symbols-outlined icon">person</span>
+                <input type="text" formControlName="passengerName" placeholder="Your Full Name">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Mobile Number</label>
+              <div class="input-wrapper">
+                <span class="material-symbols-outlined icon">call</span>
+                <input type="tel" formControlName="phone" placeholder="98290XXXXX">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-actions-row">
+            <button type="submit" class="btn btn-accent btn-lg action-btn">
+              <span class="material-symbols-outlined">bolt</span> Book Local Taxi Now
+            </button>
+            <button type="button" (click)="whatsappBook()" class="btn btn-whatsapp btn-lg action-btn">
+              <span class="material-symbols-outlined">chat</span> Book via WhatsApp
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. Local Tariff Packages Section -->
+<section class="section-padding bg-light">
+  <div class="container">
+    <div class="section-header text-center">
+      <span class="section-tag">Rental Tariffs</span>
+      <h2 class="section-title">Jaipur Local Cab Packages</h2>
+      <p class="section-subtitle">Economical hourly packages for local shopping, business meetings, and heritage tours.</p>
+    </div>
+
+    <div class="tariff-grid">
+      <div class="tariff-card card">
+        <div class="t-icon">
+          <span class="material-symbols-outlined">schedule</span>
+        </div>
+        <h3>Half Day Package</h3>
+        <p class="t-pax">4 Hours / 40 Km • Dzire Sedan</p>
+        <div class="price-box">
+          <span class="currency">₹</span>
+          <span class="amount">1,200</span>
+          <span class="unit">/ 4 Hours</span>
+        </div>
+        <ul class="t-features">
+          <li><span class="material-symbols-outlined">check_circle</span> Ideal for Quick City Runs</li>
+          <li><span class="material-symbols-outlined">check_circle</span> Fuel & Driver Allowance Included</li>
+          <li><span class="material-symbols-outlined">check_circle</span> Extra Km @ ₹11/km</li>
+        </ul>
+        <a href="#local-booking-form" class="btn btn-primary btn-sm w-full">Book Half Day</a>
+      </div>
+
+      <div class="tariff-card card">
+        <div class="badge-popular">Best Value</div>
+        <div class="t-icon">
+          <span class="material-symbols-outlined">tour</span>
+        </div>
+        <h3>Full Day Sightseeing</h3>
+        <p class="t-pax">8 Hours / 80 Km • Dzire Sedan</p>
+        <div class="price-box">
+          <span class="currency">₹</span>
+          <span class="amount">2,000</span>
+          <span class="unit">/ 8 Hours</span>
+        </div>
+        <ul class="t-features">
+          <li><span class="material-symbols-outlined">check_circle</span> Amber Fort, Hawa Mahal, Jal Mahal</li>
+          <li><span class="material-symbols-outlined">check_circle</span> Unlimited Bazaars & Dining Stops</li>
+          <li><span class="material-symbols-outlined">check_circle</span> Extra Hr @ ₹150/hr</li>
+        </ul>
+        <a href="#local-booking-form" class="btn btn-primary btn-sm w-full">Book Full Day</a>
+      </div>
+
+      <div class="tariff-card card">
+        <div class="t-icon">
+          <span class="material-symbols-outlined">wb_twilight</span>
+        </div>
+        <h3>Extended Fort Sunset Tour</h3>
+        <p class="t-pax">12 Hours / 120 Km • Dzire Sedan</p>
+        <div class="price-box">
+          <span class="currency">₹</span>
+          <span class="amount">2,800</span>
+          <span class="unit">/ 12 Hours</span>
+        </div>
+        <ul class="t-features">
+          <li><span class="material-symbols-outlined">check_circle</span> Nahargarh Sunset View Included</li>
+          <li><span class="material-symbols-outlined">check_circle</span> Chokhi Dhani Evening Visit</li>
+          <li><span class="material-symbols-outlined">check_circle</span> Full Day Relaxation</li>
+        </ul>
+        <a href="#local-booking-form" class="btn btn-primary btn-sm w-full">Book Extended</a>
+      </div>
+
+      <div class="tariff-card card">
+        <div class="t-icon">
+          <span class="material-symbols-outlined">king_bed</span>
+        </div>
+        <h3>VIP Luxury Innova Tour</h3>
+        <p class="t-pax">8 Hours / 80 Km • Innova Crysta</p>
+        <div class="price-box">
+          <span class="currency">₹</span>
+          <span class="amount">3,600</span>
+          <span class="unit">/ 8 Hours</span>
+        </div>
+        <ul class="t-features">
+          <li><span class="material-symbols-outlined">check_circle</span> Luxury Captain Reclining Seats</li>
+          <li><span class="material-symbols-outlined">check_circle</span> Premium Family & VIP Comfort</li>
+          <li><span class="material-symbols-outlined">check_circle</span> Extra Legroom & Dual AC</li>
+        </ul>
+        <a href="#local-booking-form" class="btn btn-primary btn-sm w-full">Book Innova VIP</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. Suggested 1-Day Jaipur Sightseeing Itinerary Timeline -->
+<section class="section-padding">
+  <div class="container">
+    <div class="section-header text-center">
+      <span class="section-tag">Perfect Day Plan</span>
+      <h2 class="section-title">Suggested 1-Day Jaipur Sightseeing Itinerary</h2>
+      <p class="section-subtitle">How our expert local drivers help you cover Pink City's top attractions efficiently.</p>
+    </div>
+
+    <div class="itinerary-timeline">
+      <div class="timeline-item card">
+        <div class="time-badge">09:00 AM</div>
+        <div class="timeline-body">
+          <h4>Hotel / Station Pickup & Hawa Mahal</h4>
+          <p>Pickup from your location in Jaipur. Head to Hawa Mahal for morning photo stop and City Palace tour.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item card">
+        <div class="time-badge">11:30 AM</div>
+        <div class="timeline-body">
+          <h4>Jal Mahal & Amber Fort Guided Tour</h4>
+          <p>Scenic photo stop at Jal Mahal, followed by guided tour of Amber Fort & Sheesh Mahal (Mirror Palace).</p>
+        </div>
+      </div>
+
+      <div class="timeline-item card">
+        <div class="time-badge">02:00 PM</div>
+        <div class="timeline-body">
+          <h4>Authentic Rajasthani Lunch Break</h4>
+          <p>Driver takes you to top-rated authentic Dal Baati Churma restaurants or MI Road dining spots.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item card">
+        <div class="time-badge">04:30 PM</div>
+        <div class="timeline-body">
+          <h4>Nahargarh Fort Sunset & Shopping</h4>
+          <p>Enjoy breathtaking sunset view over Pink City from Nahargarh Fort, followed by Bapu Bazaar handicraft shopping.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. Popular Jaipur Sightseeing Attractions Grid -->
+<section class="section-padding bg-light">
+  <div class="container">
+    <div class="section-header text-center">
+      <span class="section-tag">Must Visit Places</span>
+      <h2 class="section-title">Top Jaipur Sightseeing Places Covered</h2>
+      <p class="section-subtitle">Our drivers take you directly to Pink City's famous UNESCO World Heritage forts & palaces.</p>
+    </div>
+
+    <div class="attractions-grid">
+      <div class="place-card card">
+        <img src="https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=600&q=80" alt="Amber Fort Jaipur">
+        <div class="place-body">
+          <h4>Amber Fort & Sheesh Mahal</h4>
+          <p>Majestic hilltop palace featuring intricate mirror work, elephant rides, and Maota lake view.</p>
+        </div>
+      </div>
+
+      <div class="place-card card">
+        <img src="https://images.unsplash.com/photo-1596402184320-417e7178b2cd?auto=format&fit=crop&w=600&q=80" alt="Hawa Mahal Jaipur">
+        <div class="place-body">
+          <h4>Hawa Mahal (Palace of Winds)</h4>
+          <p>Iconic 5-storey honeycomb pink sandstone facade with 953 ornate latticed windows.</p>
+        </div>
+      </div>
+
+      <div class="place-card card">
+        <img src="https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=600&q=80" alt="Jal Mahal Jaipur">
+        <div class="place-body">
+          <h4>Jal Mahal (Water Palace)</h4>
+          <p>Picturesque palace submerged in the middle of Man Sagar Lake in Jaipur.</p>
+        </div>
+      </div>
+
+      <div class="place-card card">
+        <img src="city-palace.jpg" alt="City Palace Jaipur Chandra Mahal">
+        <div class="place-body">
+          <h4>City Palace & Chandra Mahal</h4>
+          <p>Royal residence of Jaipur Maharajas blending Mughal, Rajput and European architecture.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. FAQ Section -->
+<section class="section-padding">
+  <div class="container container-narrow">
+    <div class="section-header text-center">
+      <span class="section-tag">Got Questions?</span>
+      <h2 class="section-title">Jaipur Local Taxi FAQs</h2>
+      <p class="section-subtitle">Everything you need to know about booking local sightseeing cabs in Jaipur.</p>
+    </div>
+
+    <app-faq-accordion [items]="localFaqs"></app-faq-accordion>
+  </div>
+</section>
+
+<!-- 7. Call to Action Banner -->
+<app-cta-banner
+  title="Ready to Tour Jaipur Pink City?"
+  description="Book your Jaipur local sightseeing cab online in less than 60 seconds with instant WhatsApp confirmation!"
+  buttonText="Book Local Taxi Now">
+</app-cta-banner>
+
+<!-- Confirmation Modal -->
+@if (showSuccessModal()) {
+  <div class="modal-overlay" (click)="closeModal()">
+    <div class="modal-card card" (click)="$event.stopPropagation()">
+      <span class="material-symbols-outlined success-icon">check_circle</span>
+      <h2>Local Cab Booking Sent!</h2>
+      <p>Thank you <strong>{{ bookingForm.value.passengerName }}</strong>! Our local dispatch team will call you shortly on <strong>+91 {{ bookingForm.value.phone }}</strong> to confirm your sightseeing tour details.</p>
+      <button (click)="closeModal()" class="btn btn-primary">Done</button>
+    </div>
+  </div>
+}

@@ -1,0 +1,117 @@
+.success-page {
+  background-color: var(--bg-color);
+  min-height: 70vh;
+}
+
+.success-card {
+  max-width: 680px;
+  padding: 3rem 2rem;
+  background: #FFFFFF;
+}
+
+.icon-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #ECFDF5;
+  color: #10B981;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.25rem;
+
+  .success-icon {
+    font-size: 50px;
+  }
+}
+
+.status-badge {
+  background: #D1FAE5;
+  color: #065F46;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--border-radius-full);
+}
+
+.page-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0.85rem 0 0.5rem;
+}
+
+.subtitle {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.booking-id-banner {
+  background: var(--primary-light);
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+
+  .lbl {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+
+  .id-val {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    letter-spacing: 2px;
+  }
+}
+
+.details-summary-box {
+  padding: 1.5rem;
+  background: var(--bg-color);
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  color: var(--text-secondary);
+
+  &.highlight {
+    border-top: 1px dashed var(--border-color);
+    padding-top: 0.75rem;
+    color: var(--text-primary);
+  }
+
+  .total {
+    font-size: 1.35rem;
+    color: var(--primary-color);
+  }
+
+  @media (max-width: 540px) {
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+}
+
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-whatsapp {
+  background: #25D366;
+  color: #FFFFFF;
+
+  &:hover {
+    background: #1EBE5B;
+  }
+}

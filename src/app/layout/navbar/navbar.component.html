@@ -1,0 +1,81 @@
+<!-- 100% Frozen Fixed Header Navbar -->
+<header class="navbar-header" [class.scrolled]="isScrolled()">
+  <div class="container navbar-container">
+    <!-- Brand SVG Logo Left -->
+    <app-logo (click)="closeMobileMenu()"></app-logo>
+
+    <!-- Desktop Navigation Links -->
+    <nav class="desktop-menu">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-link">Home</a>
+      <a routerLink="/airport-transfer" routerLinkActive="active" class="nav-link">Airport Transfer</a>
+      <a routerLink="/local-taxi" routerLinkActive="active" class="nav-link">Local Taxi</a>
+      <a routerLink="/outstation" routerLinkActive="active" class="nav-link">Outstation</a>
+      <a routerLink="/fleet" routerLinkActive="active" class="nav-link">Fleet</a>
+      <a routerLink="/contact" routerLinkActive="active" class="nav-link">Contact</a>
+    </nav>
+
+    <!-- Right Side CTAs & Hamburger Toggle -->
+    <div class="navbar-actions">
+      <a href="tel:+919829012345" class="btn btn-outline btn-sm call-now-btn">
+        <span class="material-symbols-outlined icon">call</span> Call Now
+      </a>
+      <a routerLink="/book" class="btn btn-accent btn-sm book-now-btn">
+        Book Now
+      </a>
+      <button 
+        class="mobile-toggle-btn" 
+        (click)="toggleMobileMenu()" 
+        [attr.aria-expanded]="isMobileMenuOpen()" 
+        aria-label="Toggle navigation menu">
+        <span class="material-symbols-outlined">
+          {{ isMobileMenuOpen() ? 'close' : 'menu' }}
+        </span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile Navigation Drawer Overlay & Drawer -->
+@if (isMobileMenuOpen()) {
+  <div class="drawer-overlay" (click)="closeMobileMenu()"></div>
+  <aside class="mobile-drawer" [class.open]="isMobileMenuOpen()">
+    <div class="drawer-header">
+      <app-logo (click)="closeMobileMenu()"></app-logo>
+      <button class="drawer-close-btn" (click)="closeMobileMenu()" aria-label="Close menu">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+
+    <div class="drawer-body">
+      <nav class="mobile-nav-links">
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="closeMobileMenu()" class="drawer-link">
+          <span class="material-symbols-outlined">home</span> Home
+        </a>
+        <a routerLink="/airport-transfer" routerLinkActive="active" (click)="closeMobileMenu()" class="drawer-link">
+          <span class="material-symbols-outlined">flight</span> Airport Transfer
+        </a>
+        <a routerLink="/local-taxi" routerLinkActive="active" (click)="closeMobileMenu()" class="drawer-link">
+          <span class="material-symbols-outlined">directions_car</span> Local Taxi
+        </a>
+        <a routerLink="/outstation" routerLinkActive="active" (click)="closeMobileMenu()" class="drawer-link">
+          <span class="material-symbols-outlined">distance</span> Outstation
+        </a>
+        <a routerLink="/fleet" routerLinkActive="active" (click)="closeMobileMenu()" class="drawer-link">
+          <span class="material-symbols-outlined">time_to_leave</span> Fleet
+        </a>
+        <a routerLink="/contact" routerLinkActive="active" (click)="closeMobileMenu()" class="drawer-link">
+          <span class="material-symbols-outlined">contact_support</span> Contact
+        </a>
+      </nav>
+
+      <div class="drawer-footer-actions">
+        <a href="tel:+919829012345" class="btn btn-outline btn-lg w-full">
+          <span class="material-symbols-outlined">call</span> Call +91 98290 12345
+        </a>
+        <a routerLink="/book" (click)="closeMobileMenu()" class="btn btn-accent btn-lg w-full">
+          Book Now
+        </a>
+      </div>
+    </div>
+  </aside>
+}

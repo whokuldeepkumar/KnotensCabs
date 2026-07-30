@@ -1,0 +1,77 @@
+<app-page-banner
+  [title]="vehicle().name + ' Rental in Jaipur'"
+  [subtitle]="vehicle().category + ' • ' + vehicle().passengerCapacity + ' Seats'"
+  [description]="vehicle().recommendedFor"
+  [breadcrumbs]="[{ label: 'Our Fleet', url: '/fleet' }, { label: vehicle().name }]">
+</app-page-banner>
+
+<div class="vehicle-detail-container section-padding">
+  <div class="container">
+    <div class="detail-layout-grid">
+      <!-- Left Main Column -->
+      <div class="main-column">
+        <!-- Gallery -->
+        <app-vehicle-gallery 
+          [images]="galleryImages()" 
+          [vehicleName]="vehicle().name">
+        </app-vehicle-gallery>
+
+        <!-- Best For Use-Case Tags -->
+        <div class="best-for-card card mt-4">
+          <h4>Recommended Trip Categories</h4>
+          <div class="tags-flex">
+            <span class="tag-pill"><span class="material-symbols-outlined icon">flight</span> Airport Pickup & Drop</span>
+            <span class="tag-pill"><span class="material-symbols-outlined icon">tour</span> Jaipur Sightseeing (8h/80km)</span>
+            <span class="tag-pill"><span class="material-symbols-outlined icon">alt_route</span> One Way Outstation</span>
+            <span class="tag-pill"><span class="material-symbols-outlined icon">corporate_fare</span> Corporate Delegations</span>
+            <span class="tag-pill"><span class="material-symbols-outlined icon">celebration</span> Weddings & Family Tours</span>
+          </div>
+        </div>
+
+        <!-- Specifications -->
+        <div class="mt-4">
+          <app-vehicle-specifications [vehicle]="vehicle()"></app-vehicle-specifications>
+        </div>
+
+        <!-- Features -->
+        <div class="mt-4">
+          <app-vehicle-features [features]="vehicle().features"></app-vehicle-features>
+        </div>
+
+        <!-- Tariff & Pricing Table -->
+        <div class="mt-4">
+          <app-vehicle-pricing [vehicle]="vehicle()"></app-vehicle-pricing>
+        </div>
+      </div>
+
+      <!-- Right Column: Sticky Quick Booking Card -->
+      <div class="side-column">
+        <div class="sticky-wrapper">
+          <div class="rate-callout card">
+            <span class="sub font-bold text-slate-500">Starting Tariff</span>
+            <div class="rate">
+              <span class="price">₹{{ vehicle().pricePerKm }}</span>
+              <span class="unit">/ Km</span>
+            </div>
+            <span class="airport-sub">Airport Flat Rate: ₹{{ vehicle().basePriceAirport }}</span>
+          </div>
+
+          <app-booking-form></app-booking-form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Related Vehicles Carousel/Grid -->
+    <app-related-vehicles 
+      [currentVehicleId]="vehicle().id" 
+      [allVehicles]="allVehicles()">
+    </app-related-vehicles>
+
+    <!-- Bottom CTA Banner -->
+    <app-cta-banner
+      [title]="'Book ' + vehicle().name + ' Cab Now'"
+      description="Enjoy a comfortable, hassle-free ride with Knotens Cabs in Jaipur."
+      buttonText="Book Online">
+    </app-cta-banner>
+  </div>
+</div>

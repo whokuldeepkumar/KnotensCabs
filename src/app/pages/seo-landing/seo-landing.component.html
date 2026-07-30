@@ -1,0 +1,89 @@
+<app-page-banner
+  [title]="config().heroHeadline"
+  [subtitle]="config().title"
+  [description]="config().heroSubtitle"
+  [breadcrumbs]="config().breadcrumbs">
+</app-page-banner>
+
+<div class="seo-landing-container section-padding">
+  <div class="container">
+    <div class="landing-grid">
+      <!-- Main Content Column -->
+      <div class="main-column">
+        <!-- Overview & Rich Content -->
+        <div class="overview-card card">
+          <h2 class="section-title">{{ config().title }} in Jaipur</h2>
+          <p class="service-text">{{ config().serviceDescription }}</p>
+
+          <div class="highlights-grid">
+            <div class="h-box">
+              <span class="material-symbols-outlined icon">verified</span>
+              <strong>100% On-Time Guarantee</strong>
+              <p>Driver arrives 10 mins prior to pickup time</p>
+            </div>
+            <div class="h-box">
+              <span class="material-symbols-outlined icon">payments</span>
+              <strong>Transparent Fares</strong>
+              <p>No hidden charges or surge pricing</p>
+            </div>
+            <div class="h-box">
+              <span class="material-symbols-outlined icon">sanitizer</span>
+              <strong>Sanitized AC Cabs</strong>
+              <p>Clean seats, air conditioning & fresh interior</p>
+            </div>
+            <div class="h-box">
+              <span class="material-symbols-outlined icon">badge</span>
+              <strong>Verified Chauffeurs</strong>
+              <p>Polite local Jaipur commercial drivers</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tariff Table -->
+        <div class="mt-4">
+          <app-pricing-table></app-pricing-table>
+        </div>
+
+        <!-- Popular Pickup Hubs -->
+        <div class="mt-4">
+          <app-popular-pickups></app-popular-pickups>
+        </div>
+
+        <!-- Popular Destinations -->
+        <div class="mt-4">
+          <app-popular-destinations></app-popular-destinations>
+        </div>
+
+        <!-- Available Fleet Vehicles -->
+        <div class="fleet-preview-block mt-4">
+          <h3 class="section-title text-center">Available Vehicles for {{ config().title }}</h3>
+          <div class="fleet-grid mt-3">
+            @for (v of allVehicles().slice(0, 3); track v.id) {
+              <app-vehicle-card [vehicle]="v"></app-vehicle-card>
+            }
+          </div>
+        </div>
+
+        <!-- Unique Route FAQs -->
+        <div class="faq-block mt-4 card p-4">
+          <h3 class="section-title text-center">Frequently Asked Questions (FAQ)</h3>
+          <app-faq-accordion [items]="config().faqs"></app-faq-accordion>
+        </div>
+      </div>
+
+      <!-- Right Column: Booking Form Sidebar -->
+      <div class="side-column">
+        <div class="sticky-wrapper">
+          <app-booking-form></app-booking-form>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA Banner -->
+    <app-cta-banner
+      [title]="'Need ' + config().title + ' Today?'"
+      description="Book your cab online in 1 minute with instant WhatsApp confirmation."
+      buttonText="Book Online Now">
+    </app-cta-banner>
+  </div>
+</div>

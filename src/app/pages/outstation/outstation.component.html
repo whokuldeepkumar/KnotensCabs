@@ -1,0 +1,270 @@
+<!-- 1. Hero Banner Section (Centered, Spacious) -->
+<section class="outstation-hero-section">
+  <div class="hero-bg-overlay"></div>
+  <div class="container hero-container-centered text-center">
+    <div class="tag-badge-glow">
+      <span class="material-symbols-outlined icon">alt_route</span>
+      Jaipur Intercity & Outstation Cabs
+    </div>
+    <h1 class="hero-title">Jaipur Outstation Taxi & One-Way Cabs</h1>
+    <p class="hero-subtitle">
+      Economical intercity cabs from Jaipur to Delhi NCR, Ajmer, Udaipur, Jodhpur, Agra & Ranthambore starting at <strong>₹11/Km</strong>. Pay only one-way fare for one-way drops!
+    </p>
+
+    <div class="hero-highlights-row">
+      <div class="h-item">
+        <span class="material-symbols-outlined icon">check_circle</span>
+        <span>Pay Only 1-Way Fare</span>
+      </div>
+      <div class="h-item">
+        <span class="material-symbols-outlined icon">verified</span>
+        <span>Commercial Highway AC Vehicles</span>
+      </div>
+      <div class="h-item">
+        <span class="material-symbols-outlined icon">badge</span>
+        <span>Experienced Express Highway Drivers</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. Dedicated Full-Width Quick Outstation Booking Form Section (Centered, Highly Visible) -->
+<section id="outstation-booking-form" class="book-cab-now-section section-padding">
+  <div class="container">
+    <div class="section-header text-center">
+      <span class="section-tag">Instant Reservation</span>
+      <h2 class="section-title">Book Your Outstation Cab</h2>
+      <p class="section-subtitle">Select trip type and reserve your intercity cab in less than 60 seconds.</p>
+    </div>
+
+    <div class="booking-card-wrapper">
+      <div class="booking-card card">
+        <div class="type-toggle-group">
+          <button 
+            type="button" 
+            class="btn-toggle" 
+            [class.active]="tripType() === 'one-way'" 
+            (click)="setTripType('one-way')">
+            <span class="material-symbols-outlined">alt_route</span> One-Way Drop
+          </button>
+          <button 
+            type="button" 
+            class="btn-toggle" 
+            [class.active]="tripType() === 'round-trip'" 
+            (click)="setTripType('round-trip')">
+            <span class="material-symbols-outlined">sync_alt</span> Round Trip
+          </button>
+        </div>
+
+        <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()" class="form-body-grid">
+          <div class="form-row-2">
+            <div class="form-group">
+              <label>Pickup City</label>
+              <div class="input-wrapper">
+                <span class="material-symbols-outlined icon">my_location</span>
+                <input type="text" formControlName="pickupCity" readonly>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Destination City</label>
+              <div class="input-wrapper">
+                <span class="material-symbols-outlined icon">location_on</span>
+                <input type="text" formControlName="destinationCity" placeholder="e.g. Delhi, Ajmer, Udaipur, Jodhpur, Agra">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-group">
+              <label>Departure Date</label>
+              <div class="input-wrapper">
+                <span class="material-symbols-outlined icon">calendar_month</span>
+                <input type="date" formControlName="journeyDate">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Departure Time</label>
+              <div class="input-wrapper">
+                <span class="material-symbols-outlined icon">schedule</span>
+                <input type="time" formControlName="journeyTime">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group" *ngIf="tripType() === 'round-trip'">
+            <label>Return Date</label>
+            <div class="input-wrapper">
+              <span class="material-symbols-outlined icon">event_repeat</span>
+              <input type="date" formControlName="returnDate">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Choose Vehicle</label>
+            <div class="input-wrapper">
+              <span class="material-symbols-outlined icon">directions_car</span>
+              <select formControlName="vehicleId">
+                @for (v of vehicles(); track v.id) {
+                  <option [value]="v.id">{{ v.name }} ({{ v.passengerCapacity }} Seats • ₹{{ v.pricePerKm }}/Km)</option>
+                }
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-group">
+              <label>Full Name</label>
+              <div class="input-wrapper">
+                <span class="material-symbols-outlined icon">person</span>
+                <input type="text" formControlName="passengerName" placeholder="Your Full Name">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Mobile Number</label>
+              <div class="input-wrapper">
+                <span class="material-symbols-outlined icon">call</span>
+                <input type="tel" formControlName="phone" placeholder="98290XXXXX">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-actions-row">
+            <button type="submit" class="btn btn-accent btn-lg action-btn">
+              <span class="material-symbols-outlined">bolt</span> Book Outstation Cab Now
+            </button>
+            <button type="button" (click)="whatsappBook()" class="btn btn-whatsapp btn-lg action-btn">
+              <span class="material-symbols-outlined">chat</span> Book via WhatsApp
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. Popular Outstation Routes Section -->
+<section class="section-padding bg-light">
+  <div class="container">
+    <div class="section-header text-center">
+      <span class="section-tag">Trending Highways</span>
+      <h2 class="section-title">Popular Outstation Cab Routes from Jaipur</h2>
+      <p class="section-subtitle">Economical one-way & round-trip taxi packages across Rajasthan & NCR.</p>
+    </div>
+
+    <app-popular-routes></app-popular-routes>
+  </div>
+</section>
+
+<!-- 4. Per-Kilometer Outstation Tariffs -->
+<section class="section-padding">
+  <div class="container">
+    <div class="section-header text-center">
+      <span class="section-tag">Per-Km Rates</span>
+      <h2 class="section-title">Outstation Vehicle Tariff Rates</h2>
+      <p class="section-subtitle">Fixed per-kilometer pricing with zero hidden charges.</p>
+    </div>
+
+    <div class="tariff-grid">
+      <div class="tariff-card card">
+        <div class="badge-popular">Best Value</div>
+        <div class="t-icon"><span class="material-symbols-outlined">directions_car</span></div>
+        <h3>Sedan (Dzire / Etios)</h3>
+        <p class="t-pax">Up to 4 Passengers • 2 Bags</p>
+        <div class="price-box">
+          <span class="currency">₹</span>
+          <span class="amount">11</span>
+          <span class="unit">/ Per Km</span>
+        </div>
+        <ul class="t-features">
+          <li><span class="material-symbols-outlined">check_circle</span> Economical One-Way Fares</li>
+          <li><span class="material-symbols-outlined">check_circle</span> Fuel & Highway AC Included</li>
+          <li><span class="material-symbols-outlined">check_circle</span> Driver Allowance ₹400/day</li>
+        </ul>
+        <a href="#outstation-booking-form" class="btn btn-primary btn-sm w-full">Book Sedan</a>
+      </div>
+
+      <div class="tariff-card card">
+        <div class="t-icon"><span class="material-symbols-outlined">airport_shuttle</span></div>
+        <h3>SUV (Maruti Ertiga)</h3>
+        <p class="t-pax">Up to 6 Passengers • 4 Bags</p>
+        <div class="price-box">
+          <span class="currency">₹</span>
+          <span class="amount">14</span>
+          <span class="unit">/ Per Km</span>
+        </div>
+        <ul class="t-features">
+          <li><span class="material-symbols-outlined">check_circle</span> Family Highway Journeys</li>
+          <li><span class="material-symbols-outlined">check_circle</span> Extra Luggage Boot Space</li>
+          <li><span class="material-symbols-outlined">check_circle</span> Dual AC Climate Control</li>
+        </ul>
+        <a href="#outstation-booking-form" class="btn btn-primary btn-sm w-full">Book Ertiga</a>
+      </div>
+
+      <div class="tariff-card card">
+        <div class="t-icon"><span class="material-symbols-outlined">king_bed</span></div>
+        <h3>Premium Innova Crysta</h3>
+        <p class="t-pax">Up to 7 Passengers • 5 Bags</p>
+        <div class="price-box">
+          <span class="currency">₹</span>
+          <span class="amount">18</span>
+          <span class="unit">/ Per Km</span>
+        </div>
+        <ul class="t-features">
+          <li><span class="material-symbols-outlined">check_circle</span> VIP Executive Outstation</li>
+          <li><span class="material-symbols-outlined">check_circle</span> Luxury Captain Reclining Seats</li>
+          <li><span class="material-symbols-outlined">check_circle</span> Superior Highway Ride Quality</li>
+        </ul>
+        <a href="#outstation-booking-form" class="btn btn-primary btn-sm w-full">Book Innova</a>
+      </div>
+
+      <div class="tariff-card card">
+        <div class="t-icon"><span class="material-symbols-outlined">group</span></div>
+        <h3>Tempo Traveller</h3>
+        <p class="t-pax">Up to 16 Passengers • 12 Bags</p>
+        <div class="price-box">
+          <span class="currency">₹</span>
+          <span class="amount">26</span>
+          <span class="unit">/ Per Km</span>
+        </div>
+        <ul class="t-features">
+          <li><span class="material-symbols-outlined">check_circle</span> Rajasthan Heritage Tour Groups</li>
+          <li><span class="material-symbols-outlined">check_circle</span> Push-Back Seats & Sound System</li>
+          <li><span class="material-symbols-outlined">check_circle</span> Large Luggage Space</li>
+        </ul>
+        <a href="#outstation-booking-form" class="btn btn-primary btn-sm w-full">Book Tempo</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. FAQ Section -->
+<section class="section-padding bg-light">
+  <div class="container container-narrow">
+    <div class="section-header text-center">
+      <span class="section-tag">Got Questions?</span>
+      <h2 class="section-title">Outstation Taxi FAQs</h2>
+      <p class="section-subtitle">Everything you need to know about booking outstation cabs from Jaipur.</p>
+    </div>
+
+    <app-faq-accordion [items]="outstationFaqs"></app-faq-accordion>
+  </div>
+</section>
+
+<!-- 6. Call to Action Banner -->
+<app-cta-banner
+  title="Planning an Outstation Trip from Jaipur?"
+  description="Book your one-way or round-trip outstation cab online in less than 60 seconds with instant WhatsApp confirmation!"
+  buttonText="Book Outstation Cab Now">
+</app-cta-banner>
+
+<!-- Confirmation Modal -->
+@if (showSuccessModal()) {
+  <div class="modal-overlay" (click)="closeModal()">
+    <div class="modal-card card" (click)="$event.stopPropagation()">
+      <span class="material-symbols-outlined success-icon">check_circle</span>
+      <h2>Outstation Cab Booking Sent!</h2>
+      <p>Thank you <strong>{{ bookingForm.value.passengerName }}</strong>! Our outstation dispatch team will call you shortly on <strong>+91 {{ bookingForm.value.phone }}</strong> to confirm your trip details.</p>
+      <button (click)="closeModal()" class="btn btn-primary">Done</button>
+    </div>
+  </div>
+}

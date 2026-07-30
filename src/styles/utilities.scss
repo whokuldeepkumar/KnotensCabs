@@ -1,0 +1,31 @@
+/* Knotens Cabs - Global Responsive Helper Utilities */
+.hide-on-mobile {
+  @media (max-width: 768px) {
+    display: none !important;
+  }
+}
+
+.hide-on-desktop {
+  @media (min-width: 769px) {
+    display: none !important;
+  }
+}
+
+.text-fluid-hero {
+  font-size: var(--fluid-hero);
+  font-weight: 800;
+  line-height: 1.12;
+}
+
+.text-fluid-heading {
+  font-size: var(--fluid-heading);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* Touch Friendly Tap Target Padding */
+.tap-friendly {
+  min-height: 48px;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}

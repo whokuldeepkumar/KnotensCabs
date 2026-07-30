@@ -1,0 +1,18 @@
+{
+  "name": "Knotens Cabs Jaipur",
+  "short_name": "KnotensCabs",
+  "theme_color": "#1565C0",
+  "background_color": "#F8FAFC",
+  "display": "standalone",
+  "orientation": "portrait",
+  "scope": "/",
+  "start_url": "/",
+  "description": "Book reliable local, airport transfer, and outstation taxi rides in Jaipur with Knotens Cabs.",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ]
+}

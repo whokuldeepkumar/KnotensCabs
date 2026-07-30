@@ -1,0 +1,62 @@
+<div class="success-page section-padding">
+  <div class="container">
+    <div class="success-card card text-center mx-auto">
+      <div class="icon-circle">
+        <span class="material-symbols-outlined success-icon">check_circle</span>
+      </div>
+
+      <span class="status-badge">Booking Confirmed</span>
+      <h1 class="page-title">Thank You! Your Cab is Reserved</h1>
+      <p class="subtitle">
+        We have received your booking request. Our driver and vehicle assignment details will be sent to your mobile via SMS & WhatsApp 2 hours prior to pickup.
+      </p>
+
+      @if (booking()) {
+        @let b = booking()!;
+        <div class="booking-id-banner card">
+          <span class="lbl">Your Booking Reference ID</span>
+          <strong class="id-val">{{ b.bookingId }}</strong>
+        </div>
+
+        <div class="details-summary-box card text-left">
+          <div class="detail-row">
+            <span>Passenger Name:</span>
+            <strong>{{ b.customer.fullName }} ({{ b.customer.mobileNumber }})</strong>
+          </div>
+          <div class="detail-row">
+            <span>Pickup Location:</span>
+            <strong>{{ b.pickupLocation }}</strong>
+          </div>
+          <div class="detail-row">
+            <span>Drop Location:</span>
+            <strong>{{ b.dropLocation }}</strong>
+          </div>
+          <div class="detail-row">
+            <span>Journey Date & Time:</span>
+            <strong>{{ b.journeyDate }} at {{ b.journeyTime }}</strong>
+          </div>
+          <div class="detail-row">
+            <span>Selected Vehicle:</span>
+            <strong>{{ b.fare.vehicleName }}</strong>
+          </div>
+          <div class="detail-row highlight">
+            <span>Estimated Grand Total:</span>
+            <strong class="total">₹{{ b.fare.grandTotal }}</strong>
+          </div>
+        </div>
+      }
+
+      <div class="action-buttons">
+        <button (click)="whatsappConfirm()" class="btn btn-whatsapp btn-lg">
+          <span class="material-symbols-outlined">chat</span> Send to WhatsApp
+        </button>
+        <a href="tel:+919829012345" class="btn btn-outline btn-lg">
+          <span class="material-symbols-outlined">call</span> Call Dispatch
+        </a>
+        <a routerLink="/" class="btn btn-primary btn-lg">
+          Return to Home
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

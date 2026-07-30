@@ -1,0 +1,181 @@
+<div class="booking-card card" id="quick-booking">
+  <div class="card-header">
+    <div class="header-title">
+      <span class="material-symbols-outlined icon">local_taxi</span>
+      <h3>Quick Cab Booking</h3>
+    </div>
+    <span class="badge-247">24x7 Instant Confirmation</span>
+  </div>
+
+  <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()" class="booking-form">
+    <!-- Service Type Radio Selection Tabs -->
+    <div class="service-type-tabs">
+      <label class="tab-item" [class.active]="bookingForm.value.serviceType === 'airport-pickup'">
+        <input type="radio" formControlName="serviceType" value="airport-pickup">
+        <span class="material-symbols-outlined icon">flight_land</span>
+        <span>Airport</span>
+      </label>
+      <label class="tab-item" [class.active]="bookingForm.value.serviceType === 'local'">
+        <input type="radio" formControlName="serviceType" value="local">
+        <span class="material-symbols-outlined icon">tour</span>
+        <span>Local Hire</span>
+      </label>
+      <label class="tab-item" [class.active]="bookingForm.value.serviceType === 'outstation-one-way'">
+        <input type="radio" formControlName="serviceType" value="outstation-one-way">
+        <span class="material-symbols-outlined icon">alt_route</span>
+        <span>One Way</span>
+      </label>
+      <label class="tab-item" [class.active]="bookingForm.value.serviceType === 'outstation-round'">
+        <input type="radio" formControlName="serviceType" value="outstation-round">
+        <span class="material-symbols-outlined icon">sync_alt</span>
+        <span>Round Trip</span>
+      </label>
+    </div>
+
+    <!-- Form Fields Grid -->
+    <div class="form-grid">
+      <!-- Pickup Location -->
+      <div class="form-group">
+        <label for="pickupLocation">Pickup Location</label>
+        <div class="input-wrapper">
+          <span class="material-symbols-outlined icon">my_location</span>
+          <input 
+            id="pickupLocation" 
+            type="text" 
+            formControlName="pickupLocation" 
+            placeholder="e.g. Jaipur Airport, Malviya Nagar"
+            [class.invalid]="bookingForm.get('pickupLocation')?.touched && bookingForm.get('pickupLocation')?.invalid">
+        </div>
+        @if (bookingForm.get('pickupLocation')?.touched && bookingForm.get('pickupLocation')?.invalid) {
+          <span class="error-msg">Please enter a valid pickup location</span>
+        }
+      </div>
+
+      <!-- Drop Location -->
+      <div class="form-group">
+        <label for="dropLocation">Drop Location</label>
+        <div class="input-wrapper">
+          <span class="material-symbols-outlined icon">location_on</span>
+          <input 
+            id="dropLocation" 
+            type="text" 
+            formControlName="dropLocation" 
+            placeholder="e.g. Hotel Taj Rambagh, Delhi"
+            [class.invalid]="bookingForm.get('dropLocation')?.touched && bookingForm.get('dropLocation')?.invalid">
+        </div>
+        @if (bookingForm.get('dropLocation')?.touched && bookingForm.get('dropLocation')?.invalid) {
+          <span class="error-msg">Please enter a valid drop location</span>
+        }
+      </div>
+
+      <!-- Journey Date -->
+      <div class="form-group">
+        <label for="journeyDate">Journey Date</label>
+        <div class="input-wrapper">
+          <span class="material-symbols-outlined icon">calendar_month</span>
+          <input id="journeyDate" type="date" formControlName="journeyDate">
+        </div>
+      </div>
+
+      <!-- Journey Time -->
+      <div class="form-group">
+        <label for="journeyTime">Pickup Time</label>
+        <div class="input-wrapper">
+          <span class="material-symbols-outlined icon">schedule</span>
+          <input id="journeyTime" type="time" formControlName="journeyTime">
+        </div>
+      </div>
+
+      <!-- Select Vehicle -->
+      <div class="form-group full-width">
+        <label for="selectedVehicleId">Choose Vehicle</label>
+        <div class="input-wrapper">
+          <span class="material-symbols-outlined icon">directions_car</span>
+          <select id="selectedVehicleId" formControlName="selectedVehicleId">
+            @for (v of vehicles(); track v.id) {
+              <option [value]="v.id">
+                {{ v.name }} ({{ v.category }} • {{ v.passengerCapacity }} Seats • ₹{{ v.pricePerKm }}/Km)
+              </option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <!-- Passenger Name -->
+      <div class="form-group">
+        <label for="passengerName">Your Full Name</label>
+        <div class="input-wrapper">
+          <span class="material-symbols-outlined icon">person</span>
+          <input 
+            id="passengerName" 
+            type="text" 
+            formControlName="passengerName" 
+            placeholder="Enter your name"
+            [class.invalid]="bookingForm.get('passengerName')?.touched && bookingForm.get('passengerName')?.invalid">
+        </div>
+      </div>
+
+      <!-- Phone Number -->
+      <div class="form-group">
+        <label for="phone">10-Digit Mobile No.</label>
+        <div class="input-wrapper">
+          <span class="material-symbols-outlined icon">call</span>
+          <input 
+            id="phone" 
+            type="tel" 
+            formControlName="phone" 
+            placeholder="98290XXXXX"
+            [class.invalid]="bookingForm.get('phone')?.touched && bookingForm.get('phone')?.invalid">
+        </div>
+      </div>
+    </div>
+
+    <!-- Fare Summary Strip -->
+    <div class="fare-strip">
+      <div class="fare-info">
+        <span class="label">Estimated Fare:</span>
+        <span class="amount">₹{{ fareEstimate().totalEstimate }}</span>
+        <span class="subtext">({{ fareEstimate().vehicleName }})</span>
+      </div>
+      <span class="all-inclusive">Tolls & Parking extra</span>
+    </div>
+
+    <!-- Form Submit Action Buttons -->
+    <div class="form-actions">
+      <button type="submit" class="btn btn-accent btn-lg w-full">
+        <span class="material-symbols-outlined">bolt</span> Book Cab Now
+      </button>
+      <button type="button" (click)="whatsappBook()" class="btn btn-outline-whatsapp w-full">
+        <span class="material-symbols-outlined">chat</span> Book via WhatsApp
+      </button>
+    </div>
+  </form>
+
+  <!-- Confirmation Modal -->
+  @if (showSuccessModal()) {
+    <div class="modal-overlay" (click)="closeModal()">
+      <div class="modal-card card animate-fade-in" (click)="$event.stopPropagation()">
+        <div class="modal-header">
+          <span class="material-symbols-outlined success-icon">check_circle</span>
+          <h2>Booking Submitted Successfully!</h2>
+        </div>
+        <div class="modal-body">
+          <p>Thank you <strong>{{ bookingForm.value.passengerName }}</strong>! Our team at Knotens Cabs Jaipur will call you shortly on <strong>+91 {{ bookingForm.value.phone }}</strong> to confirm your ride details.</p>
+
+          <div class="summary-box">
+            <div><strong>Pickup:</strong> {{ bookingForm.value.pickupLocation }}</div>
+            <div><strong>Drop:</strong> {{ bookingForm.value.dropLocation }}</div>
+            <div><strong>Date & Time:</strong> {{ bookingForm.value.journeyDate }} at {{ bookingForm.value.journeyTime }}</div>
+            <div><strong>Est. Fare:</strong> ₹{{ fareEstimate().totalEstimate }}</div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button (click)="closeModal()" class="btn btn-primary">Done</button>
+          <a href="tel:+919829012345" class="btn btn-outline">
+            <span class="material-symbols-outlined">call</span> Call Dispatch
+          </a>
+        </div>
+      </div>
+    </div>
+  }
+</div>

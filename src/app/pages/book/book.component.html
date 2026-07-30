@@ -1,0 +1,166 @@
+<app-page-banner
+  title="Instant Online Cab Reservation"
+  subtitle="Fast & Easy Booking"
+  description="Reserve your local, airport transfer, or outstation taxi in Jaipur in less than 2 minutes."
+  [breadcrumbs]="[{ label: 'Book Cab', url: '/book' }]">
+</app-page-banner>
+
+<div class="book-page-container section-padding">
+  <div class="container">
+    <!-- Stepper Progress Bar -->
+    <app-booking-progress [currentStep]="currentStep()"></app-booking-progress>
+
+    <form [formGroup]="bookingForm" (ngSubmit)="submitBooking()">
+      <div class="booking-layout-grid">
+        <!-- Main Interactive Step Content -->
+        <div class="step-content-column">
+          <!-- Step 1: Trip Type -->
+          @if (currentStep() === 1) {
+            <app-trip-selector
+              [selectedCategory]="bookingForm.value.category!"
+              (categoryChange)="bookingForm.patchValue({ category: $event })">
+            </app-trip-selector>
+          }
+
+          <!-- Step 2 & 3: Locations -->
+          @if (currentStep() === 2) {
+            <div class="locations-step flex-column gap-3">
+              <app-pickup-location
+                [value]="bookingForm.value.pickupLocation!"
+                (valueChange)="bookingForm.patchValue({ pickupLocation: $event })">
+              </app-pickup-location>
+
+              <app-drop-location
+                [value]="bookingForm.value.dropLocation!"
+                (valueChange)="bookingForm.patchValue({ dropLocation: $event })"
+                (swap)="swapLocations()">
+              </app-drop-location>
+            </div>
+          }
+
+          <!-- Step 4: Date & Time -->
+          @if (currentStep() === 3) {
+            <app-date-time-picker
+              [date]="bookingForm.value.journeyDate!"
+              [time]="bookingForm.value.journeyTime!"
+              (dateChange)="bookingForm.patchValue({ journeyDate: $event })"
+              (timeChange)="bookingForm.patchValue({ journeyTime: $event })">
+            </app-date-time-picker>
+          }
+
+          <!-- Step 5: Vehicle Selection -->
+          @if (currentStep() === 4) {
+            <app-vehicle-selector
+              [selectedVehicleId]="bookingForm.value.vehicleId!"
+              [category]="bookingForm.value.category!"
+              (vehicleChange)="bookingForm.patchValue({ vehicleId: $event })">
+            </app-vehicle-selector>
+          }
+
+          <!-- Step 6: Customer Details & Payment -->
+          @if (currentStep() === 5) {
+            <div class="checkout-step flex-column gap-3">
+              <!-- Customer Info Card -->
+              <div class="customer-card card" formGroupName="customer">
+                <h3 class="card-title">Passenger Contact Details</h3>
+
+                <div class="form-grid">
+                  <div class="form-group">
+                    <label for="cName">Full Name *</label>
+                    <input id="cName" type="text" formControlName="fullName" placeholder="e.g. Vikram Singh">
+                    @if (bookingForm.get('customer.fullName')?.touched && bookingForm.get('customer.fullName')?.invalid) {
+                      <span class="err">Please enter your full name</span>
+                    }
+                  </div>
+
+                  <div class="form-group">
+                    <label for="cPhone">10-Digit Mobile Number *</label>
+                    <input id="cPhone" type="tel" formControlName="mobileNumber" placeholder="98290XXXXX">
+                    @if (bookingForm.get('customer.mobileNumber')?.touched && bookingForm.get('customer.mobileNumber')?.invalid) {
+                      <span class="err">Please enter valid 10-digit Indian mobile</span>
+                    }
+                  </div>
+
+                  <div class="form-group full-width">
+                    <label for="cEmail">Email Address (for Invoice) *</label>
+                    <input id="cEmail" type="email" formControlName="email" placeholder="name@domain.com">
+                  </div>
+
+                  <div class="form-group full-width">
+                    <label for="cPickup">Exact Pickup Address & Door Number</label>
+                    <textarea id="cPickup" formControlName="pickupAddress" rows="2" placeholder="House/Hotel Name, Street, Landmark..."></textarea>
+                  </div>
+
+                  <div class="form-group full-width">
+                    <label for="cNotes">Special Instructions / Flight Number (Optional)</label>
+                    <input id="cNotes" type="text" formControlName="specialInstructions" placeholder="e.g. Flight 6E-204 landing 10:15 AM, need booster seat...">
+                  </div>
+
+                  <div class="form-group full-width">
+                    <label for="cGst">GST Number for Business Invoice (Optional)</label>
+                    <input id="cGst" type="text" formControlName="gstNumber" placeholder="08AAAAA0000A1Z5">
+                  </div>
+                </div>
+              </div>
+
+              <!-- Coupon Code Widget -->
+              <app-coupon-box
+                [appliedCode]="appliedCoupon()"
+                (codeApplied)="onCouponApplied($event)">
+              </app-coupon-box>
+
+              <!-- Payment Method Selection -->
+              <app-payment-method
+                [selectedMethod]="bookingForm.value.paymentMethod!"
+                (methodChange)="bookingForm.patchValue({ paymentMethod: $event })">
+              </app-payment-method>
+            </div>
+          }
+
+          <!-- Step Navigation Button Bar -->
+          <div class="step-nav-bar">
+            @if (currentStep() > 1) {
+              <button type="button" (click)="prevStep()" class="btn btn-outline">
+                <span class="material-symbols-outlined">arrow_back</span> Back
+              </button>
+            } @else {
+              <div></div>
+            }
+
+            @if (currentStep() < 5) {
+              <button type="button" (click)="nextStep()" class="btn btn-accent btn-lg">
+                Continue <span class="material-symbols-outlined">arrow_forward</span>
+              </button>
+            } @else {
+              <button type="submit" [disabled]="isSubmitting()" class="btn btn-accent btn-lg">
+                @if (isSubmitting()) {
+                  <span>Confirming...</span>
+                } @else {
+                  <span>Confirm & Book Cab Now</span>
+                  <span class="material-symbols-outlined">check_circle</span>
+                }
+              </button>
+            }
+          </div>
+        </div>
+
+        <!-- Right Side Live Summary Sidebar -->
+        <div class="summary-sidebar">
+          <div class="sticky-sidebar">
+            <app-fare-estimator [fare]="itemizedFare()"></app-fare-estimator>
+
+            <!-- Quick Call dispatch box -->
+            <div class="quick-call-card card text-center">
+              <span class="material-symbols-outlined icon">support_agent</span>
+              <h5>Need Booking Assistance?</h5>
+              <p>Speak to Jaipur dispatch hotline</p>
+              <a href="tel:+919829012345" class="btn btn-primary btn-sm w-full">
+                <span class="material-symbols-outlined">call</span> +91 98290 12345
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

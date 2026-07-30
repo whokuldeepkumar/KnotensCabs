@@ -1,0 +1,143 @@
+/* Knotens Cabs - Global UI Button, Card & Input Component Styles */
+@use 'variables' as *;
+@use 'mixins' as *;
+
+/* Buttons Design System */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-family);
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1;
+  padding: 0.85rem 1.6rem;
+  border-radius: var(--border-radius-full);
+  border: 2px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all var(--transition-normal);
+  white-space: nowrap;
+  user-select: none;
+
+  .material-symbols-outlined {
+    font-size: 20px;
+    transition: transform var(--transition-fast);
+  }
+
+  &:hover .material-symbols-outlined {
+    transform: translateX(3px);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  &:disabled, &.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
+
+/* Button Variants */
+.btn-primary {
+  background-color: var(--primary-color);
+  color: var(--text-white);
+
+  &:hover {
+    background-color: var(--primary-hover);
+    box-shadow: 0 8px 20px rgba(21, 101, 192, 0.3);
+  }
+}
+
+.btn-accent, .btn-secondary {
+  background-color: var(--secondary-color);
+  color: var(--text-white);
+
+  &:hover {
+    background-color: var(--secondary-hover);
+    box-shadow: 0 8px 20px rgba(255, 152, 0, 0.35);
+  }
+}
+
+.btn-outline {
+  background-color: transparent;
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+
+  &:hover {
+    background-color: var(--primary-light);
+    border-color: var(--primary-hover);
+  }
+}
+
+.btn-text {
+  background-color: transparent;
+  color: var(--primary-color);
+  padding: 0.5rem 0.85rem;
+
+  &:hover {
+    background-color: var(--primary-light);
+  }
+}
+
+/* Button Sizes */
+.btn-sm {
+  padding: 0.6rem 1.15rem;
+  font-size: 0.85rem;
+}
+
+.btn-lg {
+  padding: 1.05rem 2.2rem;
+  font-size: 1.05rem;
+  border-radius: var(--border-radius-full);
+}
+
+.btn-icon {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border-radius: 50%;
+  @include flex-center;
+}
+
+/* Cards Design System (20px Rounded Corners) */
+.card {
+  @include card-style;
+}
+
+/* Form Controls & Inputs */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+input[type="time"],
+input[type="password"],
+select,
+textarea {
+  @include input-base;
+}
+
+textarea {
+  height: auto;
+  min-height: 120px;
+  resize: vertical;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.4rem;
+}
+
+.form-error {
+  font-size: 0.775rem;
+  font-weight: 500;
+  color: var(--danger-color);
+  margin-top: 0.35rem;
+  display: block;
+}

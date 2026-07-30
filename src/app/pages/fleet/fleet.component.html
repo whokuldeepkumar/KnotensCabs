@@ -1,0 +1,110 @@
+<!-- Page Banner Header -->
+<app-page-banner
+  title="Our Modern Cab Fleet in Jaipur"
+  subtitle="Vehicles & Rates"
+  description="Choose from our well-maintained Sedans, SUVs, Premium Innova Crysta, and Luxury Tempo Travellers. All cabs are fully sanitized and equipped with AC and GPS tracking."
+  [breadcrumbs]="[{ label: 'Our Fleet', url: '/fleet' }]">
+</app-page-banner>
+
+<div class="fleet-page-container section-padding">
+  <div class="container">
+    <!-- Filter Control Bar -->
+    <div class="filter-card card">
+      <div class="filter-grid">
+        <!-- Search Input -->
+        <div class="filter-group search-group">
+          <label>Search Vehicle</label>
+          <div class="input-wrapper">
+            <span class="material-symbols-outlined icon">search</span>
+            <input 
+              type="text" 
+              [ngModel]="searchTerm()" 
+              (ngModelChange)="searchTerm.set($event)"
+              placeholder="e.g. Dzire, Innova, Tempo...">
+          </div>
+        </div>
+
+        <!-- Vehicle Type Filter -->
+        <div class="filter-group">
+          <label>Vehicle Type</label>
+          <select [ngModel]="selectedCategory()" (ngModelChange)="selectedCategory.set($event)">
+            <option value="All">All Categories</option>
+            <option value="Sedan">Sedan (Dzire/Etios)</option>
+            <option value="SUV">SUV (Ertiga/Brezza)</option>
+            <option value="Premium SUV">Premium SUV (Innova)</option>
+            <option value="Tempo Traveller">Tempo Traveller</option>
+          </select>
+        </div>
+
+        <!-- Capacity Filter -->
+        <div class="filter-group">
+          <label>Passenger Seats</label>
+          <select [ngModel]="selectedCapacity()" (ngModelChange)="selectedCapacity.set($event)">
+            <option value="All">Any Capacity</option>
+            <option value="4">Up to 4 Passengers</option>
+            <option value="6-7">6 to 7 Passengers</option>
+            <option value="12+">12+ Group Passengers</option>
+          </select>
+        </div>
+
+        <!-- Fuel Filter -->
+        <div class="filter-group">
+          <label>Fuel Type</label>
+          <select [ngModel]="selectedFuel()" (ngModelChange)="selectedFuel.set($event)">
+            <option value="All">All Fuels</option>
+            <option value="CNG">CNG / Hybrid</option>
+            <option value="Diesel">Diesel</option>
+            <option value="Petrol">Petrol</option>
+          </select>
+        </div>
+
+        <!-- Sort By -->
+        <div class="filter-group">
+          <label>Sort Fares</label>
+          <select [ngModel]="sortBy()" (ngModelChange)="sortBy.set($event)">
+            <option value="recommended">Recommended</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+            <option value="capacity">Capacity: Large First</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="filter-bottom-strip">
+        <span class="results-count">Showing <strong>{{ filteredVehicles().length }}</strong> of {{ allVehicles().length }} Vehicles</span>
+        <button type="button" (click)="resetFilters()" class="reset-btn">
+          <span class="material-symbols-outlined icon">restart_alt</span> Reset Filters
+        </button>
+      </div>
+    </div>
+
+    <!-- Fleet Vehicle Grid -->
+    @if (filteredVehicles().length > 0) {
+      <div class="fleet-grid mt-4">
+        @for (vehicle of filteredVehicles(); track vehicle.id) {
+          <app-vehicle-card [vehicle]="vehicle"></app-vehicle-card>
+        }
+      </div>
+    } @else {
+      <div class="no-results card text-center">
+        <span class="material-symbols-outlined icon">directions_car_off</span>
+        <h3>No Vehicles Match Your Selected Filters</h3>
+        <p>Try resetting search or filter criteria to explore all Knotens Cabs options.</p>
+        <button (click)="resetFilters()" class="btn btn-primary btn-sm">Reset All Filters</button>
+      </div>
+    }
+
+    <!-- Comparison Table Section -->
+    <div class="mt-5">
+      <app-vehicle-comparison></app-vehicle-comparison>
+    </div>
+
+    <!-- CTA Banner -->
+    <app-cta-banner
+      title="Unsure Which Vehicle to Pick for Your Trip?"
+      description="Call our Jaipur dispatch team anytime for instant vehicle recommendation and custom tariff quotes."
+      buttonText="Call Dispatch Hotline"
+      buttonLink="/contact">
+    </app-cta-banner>
+  </div>
+</div>

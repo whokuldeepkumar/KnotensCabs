@@ -1,0 +1,183 @@
+<!-- 1. Hero Image Slider (Critical Above the Fold - LCP) -->
+<app-hero-slider></app-hero-slider>
+
+<!-- 2. Dedicated Book Cab Now Section (Above Fold / Main Action) -->
+<section id="quick-booking" class="book-cab-now-section section-padding">
+  <div class="container">
+    <div class="section-header text-center">
+      <span class="section-tag">Instant Reservation</span>
+      <h2 class="section-title">Book Your Cab Now</h2>
+      <p class="section-subtitle">Quick booking in less than one minute with instant WhatsApp confirmation.</p>
+    </div>
+
+    <!-- Booking Card inside Modern White Container (Rounded 20px, Large Shadow) -->
+    <div class="booking-card-wrapper">
+      <app-booking-form></app-booking-form>
+    </div>
+  </div>
+</section>
+
+<!-- 3. Our Cab Services (Deferred on Viewport) -->
+@defer (on viewport) {
+  <section id="services" class="services-section section-padding bg-light">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-tag">Tailored Mobility</span>
+        <h2 class="section-title">Cab Services in Jaipur</h2>
+        <p class="section-subtitle">From airport pickups to outstation weekend tours, choose our premium rides.</p>
+      </div>
+
+      <div class="services-grid">
+        @for (srv of services(); track srv.id) {
+          <app-service-card [service]="srv"></app-service-card>
+        }
+      </div>
+    </div>
+  </section>
+} @placeholder {
+  <div class="section-padding text-center text-muted">Loading services...</div>
+}
+
+<!-- 4. Why Choose Knotens Cabs & Trust Indicators (Deferred on Viewport) -->
+@defer (on viewport) {
+  <section id="why-choose-us" class="why-us-section section-padding">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-tag">The Knotens Advantage</span>
+        <h2 class="section-title">Why Choose Knotens Cabs?</h2>
+        <p class="section-subtitle">Reliability, transparent pricing, and courteous drivers make us Jaipur's top rated cab company.</p>
+      </div>
+
+      <app-stats></app-stats>
+
+      <div class="features-grid mt-4">
+        <div class="feature-card card">
+          <div class="icon-circle">
+            <span class="material-symbols-outlined">verified</span>
+          </div>
+          <h4>100% On-Time Guarantee</h4>
+          <p>Driver arrives 10 minutes prior to scheduled pickup time to ensure zero delays for your flight or trip.</p>
+        </div>
+
+        <div class="feature-card card">
+          <div class="icon-circle">
+            <span class="material-symbols-outlined">payments</span>
+          </div>
+          <h4>Transparent Fixed Fares</h4>
+          <p>No hidden charges, zero surge pricing during peak hours. Pay exactly what was quoted during booking.</p>
+        </div>
+
+        <div class="feature-card card">
+          <div class="icon-circle">
+            <span class="material-symbols-outlined">sanitizer</span>
+          </div>
+          <h4>Sanitized AC Cabs</h4>
+          <p>Cleaned, disinfected, and air-conditioned cars with working music systems and phone chargers.</p>
+        </div>
+
+        <div class="feature-card card">
+          <div class="icon-circle">
+            <span class="material-symbols-outlined">badge</span>
+          </div>
+          <h4>Verified Chauffeurs</h4>
+          <p>Polite, background-checked local drivers with commercial licenses and deep route knowledge of Rajasthan.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+} @placeholder {
+  <div class="section-padding text-center text-muted">Loading trust features...</div>
+}
+
+<!-- 5. Vehicle Fleet Showcase Preview (Deferred on Viewport) -->
+@defer (on viewport) {
+  <section id="fleet-preview" class="fleet-section section-padding bg-light">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-tag">Our Taxi Fleet</span>
+        <h2 class="section-title">Choose Your Vehicle</h2>
+        <p class="section-subtitle">Well-maintained Sedans, SUVs, Premium Innova Crysta, and group Tempo Travellers.</p>
+      </div>
+
+      <div class="fleet-grid">
+        @for (veh of vehicles().slice(0, 3); track veh.id) {
+          <app-vehicle-card [vehicle]="veh"></app-vehicle-card>
+        }
+      </div>
+
+      <div class="text-center mt-4">
+        <a routerLink="/fleet" class="btn btn-outline btn-lg">
+          View All Vehicles & Tariffs <span class="material-symbols-outlined">arrow_forward</span>
+        </a>
+      </div>
+    </div>
+  </section>
+} @placeholder {
+  <div class="section-padding text-center text-muted">Loading fleet showcase...</div>
+}
+
+<!-- 6. Popular Outstation Routes (Deferred on Viewport) -->
+@defer (on viewport) {
+  <section id="popular-routes" class="routes-section section-padding">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-tag">Top Intercity Routes</span>
+        <h2 class="section-title">Popular Outstation Cab Routes</h2>
+        <p class="section-subtitle">Economical one-way and round-trip taxi packages from Jaipur across Rajasthan & NCR.</p>
+      </div>
+
+      <app-popular-routes></app-popular-routes>
+    </div>
+  </section>
+} @placeholder {
+  <div class="section-padding text-center text-muted">Loading popular routes...</div>
+}
+
+<!-- 7. Customer Testimonials & Reviews (Deferred on Viewport) -->
+@defer (on viewport) {
+  <section id="testimonials" class="testimonials-section section-padding bg-light">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-tag">Customer Stories</span>
+        <h2 class="section-title">What Our Passengers Say</h2>
+        <p class="section-subtitle">Rated 4.9/5 stars on Google Reviews by over 5,000+ satisfied travelers.</p>
+      </div>
+
+      <div class="testimonials-grid">
+        @for (t of testimonials; track t.id) {
+          <app-testimonial-card [testimonial]="t"></app-testimonial-card>
+        }
+      </div>
+    </div>
+  </section>
+} @placeholder {
+  <div class="section-padding text-center text-muted">Loading reviews...</div>
+}
+
+<!-- 8. Frequently Asked Questions (FAQ) (Deferred on Viewport) -->
+@defer (on viewport) {
+  <section id="faq" class="faq-section section-padding">
+    <div class="container container-narrow">
+      <div class="section-header text-center">
+        <span class="section-tag">Need Assistance?</span>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p class="section-subtitle">Quick answers to common questions about booking, payments, airport pickups, and cancellation.</p>
+      </div>
+
+      <app-faq-accordion [items]="homeFaqs"></app-faq-accordion>
+    </div>
+  </section>
+} @placeholder {
+  <div class="section-padding text-center text-muted">Loading FAQs...</div>
+}
+
+<!-- 9. Call to Action Banner (Deferred on Viewport) -->
+@defer (on viewport) {
+  <app-cta-banner
+    title="Ready to Travel with Knotens Cabs?"
+    description="Book your Jaipur local, airport transfer, or outstation cab online in less than 1 minute!"
+    buttonText="Book Cab Now">
+  </app-cta-banner>
+} @placeholder {
+  <div class="text-center p-4 text-muted">Loading CTA...</div>
+}

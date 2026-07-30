@@ -1,0 +1,109 @@
+.vehicle-detail-container {
+  background-color: var(--bg-color);
+}
+
+.detail-layout-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 2.5rem;
+
+  @media (max-width: 992px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.main-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.mt-4 {
+  margin-top: 1.75rem;
+}
+
+.best-for-card {
+  padding: 1.5rem;
+  background: #FFFFFF;
+
+  h4 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.85rem;
+  }
+}
+
+.tags-flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.tag-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: var(--primary-light);
+  color: var(--primary-color);
+  font-size: 0.825rem;
+  font-weight: 600;
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--border-radius-full);
+
+  .icon {
+    font-size: 16px;
+    color: var(--accent-dark);
+  }
+}
+
+/* Sticky Right Column */
+.side-column {
+  position: relative;
+}
+
+.sticky-wrapper {
+  position: sticky;
+  top: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.rate-callout {
+  padding: 1.25rem;
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+  color: #FFFFFF;
+  text-align: center;
+  border-radius: var(--border-radius-md);
+
+  .sub {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #E3F2FD;
+  }
+
+  .rate {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.25rem;
+    margin: 0.35rem 0;
+
+    .price {
+      font-size: 2.25rem;
+      font-weight: 800;
+    }
+
+    .unit {
+      font-size: 1rem;
+      color: #E3F2FD;
+    }
+  }
+
+  .airport-sub {
+    font-size: 0.825rem;
+    color: var(--accent-color);
+    font-weight: 600;
+  }
+}

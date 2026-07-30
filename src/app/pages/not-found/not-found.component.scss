@@ -1,0 +1,48 @@
+.not-found-page {
+  background-color: var(--bg-color);
+  min-height: 75vh;
+  display: flex;
+  align-items: center;
+}
+
+.not-found-card {
+  max-width: 620px;
+  padding: 3.5rem 2rem;
+  background: #FFFFFF;
+}
+
+.illustration-box {
+  margin-bottom: 1.5rem;
+}
+
+.err-badge {
+  background: var(--secondary-light);
+  color: var(--secondary-hover);
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--border-radius-full);
+  display: inline-block;
+  margin-bottom: 0.75rem;
+}
+
+.page-title {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 2.5rem;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}

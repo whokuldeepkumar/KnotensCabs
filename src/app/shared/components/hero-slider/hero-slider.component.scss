@@ -1,0 +1,401 @@
+.hero-slider-section {
+  position: relative;
+  width: 100%;
+  height: 650px;
+  overflow: hidden;
+  background: #070F1E;
+
+  @media (max-width: 992px) {
+    height: 520px;
+  }
+  @media (max-width: 640px) {
+    height: 420px;
+  }
+}
+
+/* Top Progress Bar Indicator */
+.autoplay-progress-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  z-index: 20;
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #38BDF8 0%, #FF9800 100%);
+    width: 0%;
+    animation: progressFill 5s linear infinite;
+
+    &.paused {
+      animation-play-state: paused;
+    }
+  }
+}
+
+@keyframes progressFill {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+
+.slides-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.slide-item {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.97);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.8s;
+  display: flex;
+  align-items: center;
+  z-index: 1;
+
+  &.active {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+    z-index: 2;
+
+    .slide-bg-img {
+      animation: kenBurns 8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .stagger-1 { animation: staggerUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards; }
+    .stagger-2 { animation: staggerUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards; }
+    .stagger-3 { animation: staggerUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards; }
+    .stagger-4 { animation: staggerUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards; }
+    .stagger-5 { animation: staggerUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards; }
+  }
+}
+
+.ambient-glow-spotlight {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 75% 35%, rgba(56, 189, 248, 0.2) 0%, rgba(21, 101, 192, 0.08) 50%, transparent 80%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.slide-bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.slide-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, #070F1E 0%, rgba(11, 25, 44, 0.88) 55%, rgba(15, 35, 66, 0.55) 100%);
+  z-index: 2;
+}
+
+.slide-content-container {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+}
+
+.slide-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  gap: 2.5rem;
+
+  &.has-fleet-showcase {
+    grid-template-columns: 1.15fr 1fr;
+
+    @media (max-width: 992px) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+.slide-text-box {
+  max-width: 680px;
+  color: #FFFFFF;
+
+  .slide-badge, .slide-title, .slide-subtitle, .slide-highlights, .slide-cta-buttons, .fleet-showcase-grid {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  .slide-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(56, 189, 248, 0.15);
+    color: #38BDF8;
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    font-size: 0.825rem;
+    font-weight: 700;
+    padding: 0.35rem 0.9rem;
+    border-radius: 50px;
+    margin-bottom: 1.25rem;
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
+
+    .icon { font-size: 18px; color: #FF9800; }
+  }
+
+  .slide-title {
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1.12;
+    margin-bottom: 1rem;
+    color: #FFFFFF;
+    letter-spacing: -0.5px;
+    text-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+
+    @media (max-width: 992px) {
+      font-size: 2.2rem;
+    }
+    @media (max-width: 640px) {
+      font-size: 1.65rem;
+    }
+  }
+
+  .slide-subtitle {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #94A3B8;
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+
+    @media (max-width: 640px) {
+      font-size: 0.875rem;
+      margin-bottom: 1rem;
+    }
+  }
+
+  .slide-highlights {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+
+    .highlight-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #E2E8F0;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.3rem 0.75rem;
+      border-radius: 50px;
+      backdrop-filter: blur(4px);
+
+      .check {
+        color: #10B981;
+        font-size: 16px;
+      }
+    }
+  }
+
+  .slide-cta-buttons {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+}
+
+.btn-dark-glass {
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(12px);
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: #38BDF8;
+    color: #38BDF8;
+  }
+}
+
+/* Slide 1 Fleet Showcase Dark Cards */
+.fleet-showcase-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  opacity: 0;
+  transform: translateY(30px);
+
+  @media (max-width: 992px) {
+    display: none;
+  }
+}
+
+.fleet-showcase-card {
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  padding: 0.85rem;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+
+  .img-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100px;
+    border-radius: 10px;
+    overflow: hidden;
+
+    .car-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .car-tag {
+      position: absolute;
+      bottom: 6px;
+      left: 6px;
+      background: rgba(7, 15, 30, 0.85);
+      color: #FF9800;
+      font-size: 0.675rem;
+      font-weight: 700;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      backdrop-filter: blur(4px);
+    }
+  }
+
+  .car-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .car-name {
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: #FFFFFF;
+    }
+
+    .view-link {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #38BDF8;
+    }
+  }
+
+  &:hover {
+    transform: translateY(-6px);
+    border-color: #1565C0;
+    box-shadow: 0 16px 32px rgba(21, 101, 192, 0.35);
+
+    .car-img {
+      transform: scale(1.08);
+    }
+  }
+}
+
+/* Slider Controls: Arrows & Glowing Dots */
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(7, 15, 30, 0.75);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+
+  .material-symbols-outlined {
+    font-size: 28px;
+  }
+
+  &:hover {
+    background: #1565C0;
+    color: #FFFFFF;
+    border-color: #38BDF8;
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
+  }
+
+  &.prev-arrow { left: 24px; }
+  &.next-arrow { right: 24px; }
+
+  @media (max-width: 640px) {
+    width: 38px;
+    height: 38px;
+
+    .material-symbols-outlined { font-size: 22px; }
+    &.prev-arrow { left: 10px; }
+    &.next-arrow { right: 10px; }
+  }
+}
+
+.slider-dots {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.dot-btn {
+  width: 10px;
+  height: 10px;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.25);
+  border: none;
+  cursor: pointer;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &.active {
+    width: 36px;
+    background: #FF9800;
+    box-shadow: 0 0 14px rgba(255, 152, 0, 0.7);
+  }
+
+  &:hover:not(.active) {
+    background: rgba(255, 255, 255, 0.6);
+  }
+}
+
+@keyframes staggerUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes kenBurns {
+  from {
+    transform: scale(1.08);
+  }
+  to {
+    transform: scale(1);
+  }
+}

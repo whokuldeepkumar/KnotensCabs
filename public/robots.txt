@@ -1,0 +1,9 @@
+# https://knotens.cabs/robots.txt
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /admin/*
+Disallow: /booking-failed
+
+# Sitemap Location
+Sitemap: https://knotens.cabs/sitemap.xml

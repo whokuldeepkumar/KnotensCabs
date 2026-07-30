@@ -1,0 +1,323 @@
+<!-- 1. Hero Banner Section (Centered, Spacious Header) -->
+<section class="airport-hero-section">
+  <div class="hero-bg-overlay"></div>
+  <div class="container hero-container-centered text-center">
+    <div class="tag-badge-glow">
+      <span class="material-symbols-outlined icon">flight_takeoff</span>
+      Jaipur Airport (JAI) Pickup & Drop
+    </div>
+    <h1 class="hero-title">24x7 Jaipur Airport Taxi Service</h1>
+    <p class="hero-subtitle">
+      Reliable Jaipur Airport transfer cabs with flight tracking, <strong>zero wait charges</strong>, and door-to-door pickup across Pink City starting at <strong>₹799 Flat Fare</strong>.
+    </p>
+
+    <div class="hero-highlights-row">
+      <div class="h-item">
+        <span class="material-symbols-outlined icon">schedule</span>
+        <span>Flight Tracking & Zero Delay Guarantee</span>
+      </div>
+      <div class="h-item">
+        <span class="material-symbols-outlined icon">badge</span>
+        <span>Meet & Greet Chauffeurs</span>
+      </div>
+      <div class="h-item">
+        <span class="material-symbols-outlined icon">payments</span>
+        <span>Fixed All-Inclusive Airport Tariffs</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. Dedicated Full-Width Quick Airport Booking Form Section (Centered, Highly Visible) -->
+<section id="airport-booking-form" class="book-cab-now-section section-padding">
+  <div class="container">
+    <div class="section-header text-center">
+      <span class="section-tag">Instant Reservation</span>
+      <h2 class="section-title">Book Your Jaipur Airport Cab</h2>
+      <p class="section-subtitle">Select pickup or drop and reserve your airport taxi in less than 60 seconds.</p>
+    </div>
+
+    <div class="booking-card-wrapper">
+      <div class="booking-card card">
+        <div class="type-toggle-group">
+          <button 
+            type="button" 
+            class="btn-toggle" 
+            [class.active]="transferType() === 'pickup'" 
+            (click)="setTransferType('pickup')">
+            <span class="material-symbols-outlined">flight_land</span> Airport Pickup
+          </button>
+          <button 
+            type="button" 
+            class="btn-toggle" 
+            [class.active]="transferType() === 'drop'" 
+            (click)="setTransferType('drop')">
+            <span class="material-symbols-outlined">flight_takeoff</span> Airport Drop
+          </button>
+        </div>
+
+        <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()" class="form-body-grid">
+          <div class="form-row-2">
+            <div class="form-group">
+              <label>Pickup Address in Jaipur</label>
+              <div class="input-wrapper">
+                <span class="material-symbols-outlined icon">location_on</span>
+                <input type="text" formControlName="pickupAddress" placeholder="e.g. Hotel, Station, Residence, Landmark">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Flight Number (Optional)</label>
+              <div class="input-wrapper">
+                <span class="material-symbols-outlined icon">flight</span>
+                <input type="text" formControlName="flightNumber" placeholder="e.g. 6E-2143 (For Free Flight Tracking)">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-group">
+              <label>Date</label>
+              <div class="input-wrapper">
+                <span class="material-symbols-outlined icon">calendar_month</span>
+                <input type="date" formControlName="journeyDate">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Pickup / Flight Landing Time</label>
+              <div class="input-wrapper">
+                <span class="material-symbols-outlined icon">schedule</span>
+                <input type="time" formControlName="journeyTime">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Choose Vehicle</label>
+            <div class="input-wrapper">
+              <span class="material-symbols-outlined icon">directions_car</span>
+              <select formControlName="vehicleId">
+                @for (v of vehicles(); track v.id) {
+                  <option [value]="v.id">{{ v.name }} ({{ v.passengerCapacity }} Seats • ₹{{ v.basePriceAirport }} Flat Rate)</option>
+                }
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-group">
+              <label>Full Name</label>
+              <div class="input-wrapper">
+                <span class="material-symbols-outlined icon">person</span>
+                <input type="text" formControlName="passengerName" placeholder="Your Full Name">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Mobile Number</label>
+              <div class="input-wrapper">
+                <span class="material-symbols-outlined icon">call</span>
+                <input type="tel" formControlName="phone" placeholder="98290XXXXX">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-actions-row">
+            <button type="submit" class="btn btn-accent btn-lg action-btn">
+              <span class="material-symbols-outlined">bolt</span> Book Airport Taxi Now
+            </button>
+            <button type="button" (click)="whatsappBook()" class="btn btn-whatsapp btn-lg action-btn">
+              <span class="material-symbols-outlined">chat</span> Book via WhatsApp
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. Airport Tariff Cards Grid -->
+<section class="section-padding bg-light">
+  <div class="container">
+    <div class="section-header text-center">
+      <span class="section-tag">Flat Rate Tariffs</span>
+      <h2 class="section-title">Jaipur Airport Cab Rates</h2>
+      <p class="section-subtitle">Fixed all-inclusive tariffs with zero hidden charges or surge pricing.</p>
+    </div>
+
+    <div class="tariff-grid">
+      <div class="tariff-card card">
+        <div class="badge-popular">Most Popular</div>
+        <div class="t-icon"><span class="material-symbols-outlined">directions_car</span></div>
+        <h3>Sedan (Dzire / Etios)</h3>
+        <p class="t-pax">Up to 4 Passengers • 2 Luggage Bags</p>
+        <div class="price-box">
+          <span class="currency">₹</span>
+          <span class="amount">799</span>
+          <span class="unit">Flat Rate</span>
+        </div>
+        <ul class="t-features">
+          <li><span class="material-symbols-outlined">check_circle</span> Flight Tracking Included</li>
+          <li><span class="material-symbols-outlined">check_circle</span> 60 Mins Free Airport Waiting</li>
+          <li><span class="material-symbols-outlined">check_circle</span> AC & Toll Parking Included</li>
+        </ul>
+        <a href="#airport-booking-form" class="btn btn-primary btn-sm w-full">Book Sedan ₹799</a>
+      </div>
+
+      <div class="tariff-card card">
+        <div class="t-icon"><span class="material-symbols-outlined">airport_shuttle</span></div>
+        <h3>SUV (Maruti Ertiga)</h3>
+        <p class="t-pax">Up to 6 Passengers • 4 Luggage Bags</p>
+        <div class="price-box">
+          <span class="currency">₹</span>
+          <span class="amount">1,199</span>
+          <span class="unit">Flat Rate</span>
+        </div>
+        <ul class="t-features">
+          <li><span class="material-symbols-outlined">check_circle</span> Extra Luggage Boot Space</li>
+          <li><span class="material-symbols-outlined">check_circle</span> Ideal for Families</li>
+          <li><span class="material-symbols-outlined">check_circle</span> Dual AC & Clean Interiors</li>
+        </ul>
+        <a href="#airport-booking-form" class="btn btn-primary btn-sm w-full">Book Ertiga ₹1199</a>
+      </div>
+
+      <div class="tariff-card card">
+        <div class="t-icon"><span class="material-symbols-outlined">king_bed</span></div>
+        <h3>Innova Crysta VIP</h3>
+        <p class="t-pax">Up to 7 Passengers • 5 Luggage Bags</p>
+        <div class="price-box">
+          <span class="currency">₹</span>
+          <span class="amount">1,599</span>
+          <span class="unit">Flat Rate</span>
+        </div>
+        <ul class="t-features">
+          <li><span class="material-symbols-outlined">check_circle</span> Reclining Captain Seats</li>
+          <li><span class="material-symbols-outlined">check_circle</span> Executive & VIP Pickups</li>
+          <li><span class="material-symbols-outlined">check_circle</span> Professional Uniformed Driver</li>
+        </ul>
+        <a href="#airport-booking-form" class="btn btn-primary btn-sm w-full">Book Innova ₹1599</a>
+      </div>
+
+      <div class="tariff-card card">
+        <div class="t-icon"><span class="material-symbols-outlined">group</span></div>
+        <h3>Tempo Traveller</h3>
+        <p class="t-pax">Up to 16 Passengers • 12 Luggage Bags</p>
+        <div class="price-box">
+          <span class="currency">₹</span>
+          <span class="amount">2,499</span>
+          <span class="unit">Flat Rate</span>
+        </div>
+        <ul class="t-features">
+          <li><span class="material-symbols-outlined">check_circle</span> Large Tour Group Transfer</li>
+          <li><span class="material-symbols-outlined">check_circle</span> Push-Back Seats & AC</li>
+          <li><span class="material-symbols-outlined">check_circle</span> Ample Luggage Carrier</li>
+        </ul>
+        <a href="#airport-booking-form" class="btn btn-primary btn-sm w-full">Book Tempo ₹2499</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. Guarantees Grid -->
+<section class="section-padding">
+  <div class="container">
+    <div class="section-header text-center">
+      <span class="section-tag">Why Choose Us</span>
+      <h2 class="section-title">5 Guarantees for Jaipur Airport Taxi</h2>
+      <p class="section-subtitle">Punctual, stress-free transfers to and from Jaipur International Airport (JAI).</p>
+    </div>
+
+    <div class="guarantee-grid">
+      <div class="g-card card">
+        <div class="g-icon"><span class="material-symbols-outlined">flight_land</span></div>
+        <h4>Flight Tracking</h4>
+        <p>We monitor your flight status in real-time. If your flight is delayed, driver pickup time adjusts automatically.</p>
+      </div>
+
+      <div class="g-card card">
+        <div class="g-icon"><span class="material-symbols-outlined">hourglass_empty</span></div>
+        <h4>60 Mins Free Wait</h4>
+        <p>Zero waiting charges for up to 60 minutes after your flight lands to allow easy baggage collection.</p>
+      </div>
+
+      <div class="g-card card">
+        <div class="g-icon"><span class="material-symbols-outlined">sell</span></div>
+        <h4>Fixed Flat Fare</h4>
+        <p>Pay exactly what was quoted during booking. No surge pricing, hidden parking fees, or driver extras.</p>
+      </div>
+
+      <div class="g-card card">
+        <div class="g-icon"><span class="material-symbols-outlined">support_agent</span></div>
+        <h4>24x7 Hotline</h4>
+        <p>Round-the-clock telephone and WhatsApp dispatch support for flight schedule changes and urgent bookings.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. Step-by-Step Arrival Workflow -->
+<section class="section-padding bg-light">
+  <div class="container">
+    <div class="section-header text-center">
+      <span class="section-tag">How It Works</span>
+      <h2 class="section-title">4 Easy Steps to Your Airport Transfer</h2>
+      <p class="section-subtitle">Seamless arrival experience at Jaipur International Airport (JAI).</p>
+    </div>
+
+    <div class="workflow-grid">
+      <div class="step-card card">
+        <div class="step-num">1</div>
+        <h4>Book Online</h4>
+        <p>Fill in your flight details, pickup time, and destination in Jaipur in less than 60 seconds.</p>
+      </div>
+
+      <div class="step-card card">
+        <div class="step-num">2</div>
+        <h4>Driver Assignment</h4>
+        <p>Receive driver name, phone number, and vehicle registration number via SMS & WhatsApp 2 hours prior.</p>
+      </div>
+
+      <div class="step-card card">
+        <div class="step-num">3</div>
+        <h4>Terminal Meet & Greet</h4>
+        <p>Driver waits at the arrival exit gate holding a welcome name board for instant identification.</p>
+      </div>
+
+      <div class="step-card card">
+        <div class="step-num">4</div>
+        <h4>Comfortable Drop</h4>
+        <p>Relax in an air-conditioned cab and reach your hotel or home safely with expert local drivers.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. FAQ Section -->
+<section class="section-padding">
+  <div class="container container-narrow">
+    <div class="section-header text-center">
+      <span class="section-tag">Got Questions?</span>
+      <h2 class="section-title">Jaipur Airport Taxi FAQs</h2>
+      <p class="section-subtitle">Everything you need to know about booking airport cabs in Jaipur.</p>
+    </div>
+
+    <app-faq-accordion [items]="airportFaqs"></app-faq-accordion>
+  </div>
+</section>
+
+<!-- 7. Call to Action Banner -->
+<app-cta-banner
+  title="Need an Urgent Airport Transfer?"
+  description="Book your Jaipur Airport cab online in less than 60 seconds with instant WhatsApp confirmation!"
+  buttonText="Book Airport Taxi Now">
+</app-cta-banner>
+
+<!-- Confirmation Modal -->
+@if (showSuccessModal()) {
+  <div class="modal-overlay" (click)="closeModal()">
+    <div class="modal-card card" (click)="$event.stopPropagation()">
+      <span class="material-symbols-outlined success-icon">check_circle</span>
+      <h2>Airport Cab Booking Sent!</h2>
+      <p>Thank you <strong>{{ bookingForm.value.passengerName }}</strong>! Our dispatch team will call you shortly on <strong>+91 {{ bookingForm.value.phone }}</strong> to confirm your airport transfer details.</p>
+      <button (click)="closeModal()" class="btn btn-primary">Done</button>
+    </div>
+  </div>
+}

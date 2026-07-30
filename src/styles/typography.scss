@@ -1,0 +1,79 @@
+/* Knotens Cabs - Typography Classes & Headings */
+@use 'variables' as *;
+
+h1, .text-hero {
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+
+  @media (max-width: 992px) {
+    font-size: 2.25rem;
+  }
+  @media (max-width: 640px) {
+    font-size: 1.85rem;
+  }
+}
+
+h2, .text-heading {
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  color: var(--text-primary);
+
+  @media (max-width: 768px) {
+    font-size: 1.75rem;
+  }
+}
+
+h3, .text-section {
+  font-size: 1.875rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--text-primary);
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+  }
+}
+
+h4, .text-subheading {
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--text-primary);
+
+  @media (max-width: 768px) {
+    font-size: 1.25rem;
+  }
+}
+
+h5, .text-card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--text-primary);
+}
+
+p, .text-body {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.text-caption {
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+.text-small {
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--text-muted);
+}

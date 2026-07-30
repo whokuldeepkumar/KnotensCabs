@@ -1,0 +1,85 @@
+.seo-landing-container {
+  background-color: var(--bg-color);
+}
+
+.landing-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 2.5rem;
+
+  @media (max-width: 992px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.main-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.overview-card {
+  padding: 2rem;
+  background: #FFFFFF;
+
+  .service-text {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1.75rem;
+  }
+}
+
+.highlights-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.h-box {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-color);
+  padding: 1rem;
+  border-radius: var(--border-radius-sm);
+  border: 1px solid var(--border-color);
+
+  .icon { color: var(--primary-color); font-size: 28px; margin-bottom: 0.25rem; }
+  strong { font-size: 0.95rem; color: var(--text-primary); margin-bottom: 0.2rem; }
+  p { font-size: 0.8rem; color: var(--text-secondary); margin: 0; }
+}
+
+.mt-4 { margin-top: 2rem; }
+.mt-3 { margin-top: 1.5rem; }
+
+.fleet-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+
+  @media (max-width: 992px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.faq-block {
+  padding: 2rem;
+  background: #FFFFFF;
+}
+
+.p-4 { padding: 2rem; }
+
+.side-column {
+  position: relative;
+}
+
+.sticky-wrapper {
+  position: sticky;
+  top: 100px;
+}
