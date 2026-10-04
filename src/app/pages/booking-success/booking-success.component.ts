@@ -36,6 +36,6 @@ export class BookingSuccessComponent implements OnInit {
       `*Date:* ${b.journeyDate} at ${b.journeyTime}%0A` +
       `*Total Fare:* ₹${b.fare.grandTotal}`;
 
-    window.open(`https://wa.me/919829012345?text=${text}`, '_blank');
+    window.open(`https://wa.me/919103612859?text=${text}`, '_blank');
   }
 }

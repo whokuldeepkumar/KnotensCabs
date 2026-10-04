@@ -36,7 +36,7 @@ export class AirportTransferComponent {
     journeyDate: [new Date().toISOString().split('T')[0], Validators.required],
     journeyTime: ['10:00', Validators.required],
     vehicleId: ['dzire', Validators.required],
-    passengerName: ['', Validators.required],
+    passengerName: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]{2,50}$/)]],
     phone: ['', [Validators.required, Validators.pattern(/^[6-9]\d{9}$/)]]
   });
 
@@ -109,7 +109,7 @@ export class AirportTransferComponent {
   whatsappBook() {
     const val = this.bookingForm.value;
     const msg = `Hi Knotens Cabs, I want to book an Airport ${val.transferType?.toUpperCase()} taxi:\n- Date: ${val.journeyDate} at ${val.journeyTime}\n- Destination/Pickup: ${val.location}\n- Flight No: ${val.flightNumber || 'N/A'}\n- Name: ${val.passengerName}\n- Phone: ${val.phone}`;
-    window.open(`https://wa.me/919829012345?text=${encodeURIComponent(msg)}`, '_blank');
+    window.open(`https://wa.me/919103612859?text=${encodeURIComponent(msg)}`, '_blank');
   }
 
   closeModal() {

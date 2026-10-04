@@ -59,7 +59,7 @@
         <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()" class="form-body-grid">
           <div class="form-row-2">
             <div class="form-group">
-              <label>Pickup Address in Jaipur</label>
+              <label>Address in Jaipur</label>
               <div class="input-wrapper">
                 <span class="material-symbols-outlined icon">location_on</span>
                 <input type="text" formControlName="pickupAddress" placeholder="e.g. Hotel, Station, Residence, Landmark">
@@ -108,15 +108,23 @@
               <label>Full Name</label>
               <div class="input-wrapper">
                 <span class="material-symbols-outlined icon">person</span>
-                <input type="text" formControlName="passengerName" placeholder="Your Full Name">
+                <input type="text" formControlName="passengerName" placeholder="Your Full Name"
+                  (keypress)="$event.charCode === 32 || ($event.charCode >= 65 && $event.charCode <= 90) || ($event.charCode >= 97 && $event.charCode <= 122) ? true : $event.preventDefault()">
               </div>
+              @if (bookingForm.get('passengerName')?.invalid && bookingForm.get('passengerName')?.touched) {
+                <span class="field-error">Enter a valid name (letters only, 2–50 chars).</span>
+              }
             </div>
             <div class="form-group">
               <label>Mobile Number</label>
               <div class="input-wrapper">
                 <span class="material-symbols-outlined icon">call</span>
-                <input type="tel" formControlName="phone" placeholder="98290XXXXX">
+                <input type="tel" formControlName="phone" placeholder="98290XXXXX" maxlength="10"
+                  (keypress)="$event.charCode >= 48 && $event.charCode <= 57 ? true : $event.preventDefault()">
               </div>
+              @if (bookingForm.get('phone')?.invalid && bookingForm.get('phone')?.touched) {
+                <span class="field-error">Enter a valid 10-digit Indian mobile number.</span>
+              }
             </div>
           </div>
 
@@ -234,7 +242,7 @@
 
       <div class="g-card card">
         <div class="g-icon"><span class="material-symbols-outlined">hourglass_empty</span></div>
-        <h4>60 Mins Free Wait</h4>
+        <h4>30 Mins Free Wait</h4>
         <p>Zero waiting charges for up to 60 minutes after your flight lands to allow easy baggage collection.</p>
       </div>
 
@@ -291,7 +299,7 @@
 </section>
 
 <!-- 6. FAQ Section -->
-<section class="section-padding">
+<section class="section-padding faq-section">
   <div class="container container-narrow">
     <div class="section-header text-center">
       <span class="section-tag">Got Questions?</span>

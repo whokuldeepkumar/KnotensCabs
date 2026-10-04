@@ -207,6 +207,12 @@
     }
   }
 
+  .field-error {
+    font-size: 0.78rem;
+    color: #DC2626;
+    margin-top: 0.2rem;
+  }
+
   .form-actions-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -520,4 +526,7 @@ section:has(.container-narrow) {
     color: #6B7280;
     margin-bottom: 1.25rem;
   }
+}
+.faq-section {
+  display: none;
 }

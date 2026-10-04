@@ -102,7 +102,7 @@ export class LocalTaxiComponent {
   whatsappBook() {
     const val = this.bookingForm.value;
     const msg = `Hi Knotens Cabs, I want to book a Jaipur Local Sightseeing Taxi:\n- Package: ${val.packageType}\n- Date: ${val.journeyDate} at ${val.journeyTime}\n- Pickup: ${val.pickupAddress}\n- Vehicle: ${val.vehicleId}\n- Name: ${val.passengerName}\n- Phone: ${val.phone}`;
-    window.open(`https://wa.me/919829012345?text=${encodeURIComponent(msg)}`, '_blank');
+    window.open(`https://wa.me/919103612859?text=${encodeURIComponent(msg)}`, '_blank');
   }
 
   closeModal() {

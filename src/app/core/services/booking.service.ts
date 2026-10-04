@@ -7,22 +7,22 @@ import { CabServiceItem } from '../models/service.model';
 @Injectable({
   providedIn: 'root'
 })
-export class BookingService {
-  // Fleet Signal State
+export class BookingService { 
+  // Fleet Signal State 
   readonly vehicles = signal<Vehicle[]>([
     {
       id: 'dzire',
-      name: 'Swift Dzire / Etios',
+      name: 'Suzuki Dzire / Hyundai Aura',
       category: 'Sedan',
       image: 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=600&q=80',
       passengerCapacity: 4,
       luggageCapacity: 2,
       hasAC: true,
       fuelType: 'CNG / Hybrid',
-      transmission: 'Manual/Auto',
+      transmission: 'Manual',
       pricePerKm: 11,
       basePriceAirport: 799,
-      hourlyRentalRate8Hours: 2000,
+      hourlyRentalRate8Hours: 2499,
       features: ['Air Conditioning', 'Comfortable Plush Seats', 'Clean Interior', 'Music System', 'GPS Navigation'],
       recommendedFor: 'Budget local travel, couples & small families (up to 4 passengers).',
       popular: true
@@ -39,7 +39,7 @@ export class BookingService {
       transmission: 'Manual',
       pricePerKm: 14,
       basePriceAirport: 1199,
-      hourlyRentalRate8Hours: 2800,
+      hourlyRentalRate8Hours: 2999,
       features: ['Dual AC Vents', 'Extra Luggage Space', 'Spacious Seating', 'Bluetooth Audio', 'GPS Tracking'],
       recommendedFor: 'Family trips, small groups & outstation journeys around Rajasthan.',
       popular: true
@@ -56,7 +56,7 @@ export class BookingService {
       transmission: 'Automatic',
       pricePerKm: 13,
       basePriceAirport: 999,
-      hourlyRentalRate8Hours: 2400,
+      hourlyRentalRate8Hours: 2799,
       features: ['High Ground Clearance', 'Compact SUV Comfort', 'Climate Control', 'GPS Monitored'],
       recommendedFor: 'City rides & quick outstation trips with superior comfort.',
       popular: false
@@ -72,8 +72,8 @@ export class BookingService {
       fuelType: 'Diesel',
       transmission: 'Manual/Auto',
       pricePerKm: 18,
-      basePriceAirport: 1599,
-      hourlyRentalRate8Hours: 3600,
+      basePriceAirport: 1399,
+      hourlyRentalRate8Hours: 3599,
       features: ['Captain Chairs', 'Rear AC Vents', 'Extra Legroom', 'Push Button Start', 'First Aid & Amenities'],
       recommendedFor: 'VIP travel, long outstation tours & corporate client transfers.',
       popular: true
@@ -89,7 +89,7 @@ export class BookingService {
       fuelType: 'CNG / Hybrid',
       transmission: 'Automatic',
       pricePerKm: 21,
-      basePriceAirport: 1899,
+      basePriceAirport: 1599,
       hourlyRentalRate8Hours: 4200,
       features: ['Panoramic Sunroof', 'Ultra-Quiet Hybrid Engine', 'Ottoman Reclining Seats', 'Advanced Safety Features'],
       recommendedFor: 'Luxury outstation touring & premium corporate delegation.',
@@ -143,10 +143,10 @@ export class BookingService {
       title: 'Jaipur Local Sightseeing & Rentals',
       slug: 'jaipur-local',
       icon: 'tour',
-      shortDesc: 'Full day & half day packages (8 Hrs / 80 Km) for Amber Fort, Hawa Mahal, Jal Mahal.',
+      shortDesc: 'Full day & half day packages (8 Hrs) for Amber Fort, Hawa Mahal, Jal Mahal, City Tour.',
       fullDesc: 'Explore Jaipur Pink City heritage sites with an expert local driver.',
       startingPrice: 2000,
-      priceUnit: 'for 8 Hrs / 80 Km',
+      priceUnit: 'for 8 Hrs',
       features: ['Flexible Hourly Packages', 'Knowledgeable Local Driver', 'Unlimited Stops within City']
     },
     {

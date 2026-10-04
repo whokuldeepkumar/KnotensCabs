@@ -4,24 +4,24 @@ export const BUSINESS_CONFIG = {
   domain: 'https://knotens.cabs',
   logoUrl: 'https://knotens.cabs/assets/logo.png',
   ogImageUrl: 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1200&q=80',
-  phone: '+919829012345',
-  displayPhone: '+91 98290 12345',
+  phone: '+9191036 12859',
+  displayPhone: '+91 91036 12859',
   email: 'booking@knotens.cabs',
-  whatsappNumber: '919829012345',
+  whatsappNumber: '919103612859',
   priceRange: '₹799 - ₹5500',
 
   address: {
-    streetAddress: 'Plot 45, Malviya Nagar Sector 3',
+    streetAddress: '17, Shree Hanuman vatika, Kalwar Road, hathoj',
     addressLocality: 'Jaipur',
     addressRegion: 'Rajasthan',
-    postalCode: '302017',
+    postalCode: '302012',
     addressCountry: 'IN'
   },
 
   geo: {
-    latitude: 26.8549,
-    longitude: 75.8243,
-    googleMapsUrl: 'https://maps.google.com/?q=26.8549,75.8243'
+    latitude: 26.9630615,
+    longitude: 75.6815056,
+    googleMapsUrl: 'https://maps.app.goo.gl/5QyKiQid2U49Uj5z8'
   },
 
   openingHours: 'Mo-Su 00:00-23:59',

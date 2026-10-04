@@ -18,8 +18,8 @@ import { RouterLink } from '@angular/router';
             <a [routerLink]="buttonLink()" class="btn btn-accent btn-lg">
               {{ buttonText() }}
             </a>
-            <a href="tel:+919829012345" class="btn btn-outline-white btn-lg">
-              <span class="material-symbols-outlined">call</span> Call +91 98290 12345
+            <a href="tel:+919103612859" class="btn btn-outline-white btn-lg">
+              <span class="material-symbols-outlined">call</span> Call +91 91036 12859
             </a>
           </div>
         </section>

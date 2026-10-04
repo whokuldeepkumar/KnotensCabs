@@ -166,7 +166,7 @@ export class PopularRoutesComponent {
     {
       id: 'jai-ajmer',
       destination: 'Ajmer / Pushkar',
-      distance: '135 km',
+      distance: '150 km',
       travelTime: '2.5 hrs',
       startingPrice: 1799,
       image: 'https://images.unsplash.com/photo-1596402184320-417e7178b2cd?auto=format&fit=crop&w=500&q=80',
@@ -175,9 +175,9 @@ export class PopularRoutesComponent {
     {
       id: 'jai-delhi',
       destination: 'Delhi NCR',
-      distance: '280 km',
+      distance: '300 km',
       travelTime: '4.5 hrs',
-      startingPrice: 2899,
+      startingPrice: 4999,
       image: 'https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=500&q=80',
       tag: 'Expressway Highway'
     },
@@ -186,25 +186,25 @@ export class PopularRoutesComponent {
       destination: 'Udaipur City',
       distance: '395 km',
       travelTime: '6.5 hrs',
-      startingPrice: 4299,
+      startingPrice: 5999,
       image: 'https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=600&q=80',
       tag: 'Heritage Lake City'
     },
     {
       id: 'jai-jodhpur',
       destination: 'Jodhpur',
-      distance: '330 km',
+      distance: '350 km',
       travelTime: '5.5 hrs',
-      startingPrice: 3699,
+      startingPrice: 5499,
       image: 'https://images.unsplash.com/photo-1566837945700-30057527ade0?auto=format&fit=crop&w=500&q=80',
       tag: 'Blue City'
     },
     {
       id: 'jai-bikaner',
       destination: 'Bikaner',
-      distance: '335 km',
+      distance: '350 km',
       travelTime: '5.5 hrs',
-      startingPrice: 3799,
+      startingPrice: 5499,
       image: 'https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=500&q=80',
       tag: 'Desert Gateway'
     },
@@ -213,16 +213,16 @@ export class PopularRoutesComponent {
       destination: 'Ranthambore (Sawai Madhopur)',
       distance: '160 km',
       travelTime: '3.5 hrs',
-      startingPrice: 2199,
+      startingPrice: 3999,
       image: 'https://images.unsplash.com/photo-1534177616072-ef7dc120449d?auto=format&fit=crop&w=500&q=80',
       tag: 'Tiger Reserve'
     },
     {
       id: 'jai-agra',
       destination: 'Agra (Taj Mahal)',
-      distance: '240 km',
+      distance: '260 km',
       travelTime: '4.0 hrs',
-      startingPrice: 2699,
+      startingPrice: 4499,
       image: 'https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=500&q=80',
       tag: 'Golden Triangle'
     }

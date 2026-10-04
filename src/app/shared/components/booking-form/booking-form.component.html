@@ -94,7 +94,9 @@
           <select id="selectedVehicleId" formControlName="selectedVehicleId">
             @for (v of vehicles(); track v.id) {
               <option [value]="v.id">
-                {{ v.name }} ({{ v.category }} • {{ v.passengerCapacity }} Seats • ₹{{ v.pricePerKm }}/Km)
+                {{ v.name }} ({{ v.category }} • {{ v.passengerCapacity }} Seats 
+                <!-- • ₹{{ v.pricePerKm }}/Km -->
+                )
               </option>
             }
           </select>
@@ -171,7 +173,7 @@
         </div>
         <div class="modal-footer">
           <button (click)="closeModal()" class="btn btn-primary">Done</button>
-          <a href="tel:+919829012345" class="btn btn-outline">
+          <a href="tel:+91 91036 12859" class="btn btn-outline">
             <span class="material-symbols-outlined">call</span> Call Dispatch
           </a>
         </div>

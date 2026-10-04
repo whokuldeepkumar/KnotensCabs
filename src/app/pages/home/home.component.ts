@@ -128,20 +128,20 @@ export class HomeComponent implements OnInit {
       'name': 'Knotens Cabs',
       'url': 'https://knotens.cabs',
       'logo': 'https://knotens.cabs/assets/logo.png',
-      'telephone': '+919829012345',
+      'telephone': '+919103612859',
       'priceRange': '₹799 - ₹5500',
       'address': {
         '@type': 'PostalAddress',
-        'streetAddress': 'Plot 45, Malviya Nagar Sector 3',
+        'streetAddress': '17, Shree Hanuman vatika, Kalwar Road, hathoj',
         'addressLocality': 'Jaipur',
         'addressRegion': 'Rajasthan',
-        'postalCode': '302017',
+        'postalCode': '302012',
         'addressCountry': 'IN'
       },
       'geo': {
         '@type': 'GeoCoordinates',
-        'latitude': '26.8549',
-        'longitude': '75.8243'
+        'latitude': '26.9630615',
+        'longitude': '75.6815056'
       },
       'openingHours': 'Mo-Su 00:00-23:59'
     });

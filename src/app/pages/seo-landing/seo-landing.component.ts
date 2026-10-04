@@ -94,10 +94,10 @@ export class SeoLandingComponent implements OnInit {
           'provider': {
             '@type': 'LocalBusiness',
             'name': 'Knotens Cabs',
-            'telephone': '+919829012345',
+            'telephone': '+91 91036 12859',
             'address': {
               '@type': 'PostalAddress',
-              'streetAddress': 'Malviya Nagar Sector 3',
+              'streetAddress': '17, Shree Hanuman vatika, Kalwar Road, hathoj',
               'addressLocality': 'Jaipur',
               'addressRegion': 'Rajasthan',
               'addressCountry': 'IN'

@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   standalone: true,
   template: `
     <a 
-      href="tel:+919829012345" 
+      href="tel:+919103612859" 
       class="call-float" 
       aria-label="Call Knotens Cabs 24x7 Hotline">
       <span class="material-symbols-outlined icon">call</span>

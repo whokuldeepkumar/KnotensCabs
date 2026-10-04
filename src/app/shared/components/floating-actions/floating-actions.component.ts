@@ -5,14 +5,14 @@ import { Component, signal } from '@angular/core';
   standalone: true,
   template: `
     <div class="floating-actions-bar">
-      <a href="https://wa.me/919829012345?text=Hi%20Knotens%20Cabs,%20I%20want%20to%20book%20a%20cab" target="_blank" rel="noopener" class="float-btn whatsapp-btn" aria-label="Chat on WhatsApp">
+      <a href="https://wa.me/919103612859?text=Hi%20Knotens%20Cabs,%20I%20want%20to%20book%20a%20cab" target="_blank" rel="noopener" class="float-btn whatsapp-btn" aria-label="Chat on WhatsApp">
         <span class="material-symbols-outlined">chat</span>
         <span class="btn-tooltip">WhatsApp Us</span>
       </a>
 
-      <a href="tel:+919829012345" class="float-btn call-btn" aria-label="Call 24x7 Helpline">
+      <a href="tel:+919103612859" class="float-btn call-btn" aria-label="Call 24x7 Helpline">
         <span class="material-symbols-outlined">call</span>
-        <span class="btn-tooltip">Call +91 98290 12345</span>
+        <span class="btn-tooltip">Call +91 91036 12859</span>
       </a>
 
       <button (click)="sharePage()" class="float-btn share-btn" aria-label="Share Page">

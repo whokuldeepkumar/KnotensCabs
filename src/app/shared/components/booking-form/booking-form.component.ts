@@ -78,6 +78,6 @@ export class BookingFormComponent {
       `*Name:* ${f.passengerName}%0A` +
       `*Phone:* ${f.phone}`;
       
-    window.open(`https://wa.me/919829012345?text=${text}`, '_blank');
+    window.open(`https://wa.me/919103612859?text=${text}`, '_blank');
   }
 }
